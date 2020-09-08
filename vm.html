@@ -1,0 +1,3659 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Guilherme Cox">
+    <meta name="author" content="Guilherme Cox">
+    <link rel="icon" href="img/favicon_shield.ico">
+
+    <title>Guilherme Cox</title>
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/sticky-footer-navbar.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/socialicious.css" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	<div class="container">
+          <a class="navbar-brand" href="index.html#">Guilherme Cox</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+		<a class="nav-link" href="index.html#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+		<a class="nav-link" href="#vm">Virtual Memory</a>
+              </li>
+              <li class="nav-item">
+		<a class="nav-link" href="index.html#publications">Publications</a>
+              </li>
+              <li class="nav-item">
+		<a class="nav-link" href="index.html#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+	</div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <article id="vm">
+	<header>
+	  <h2>Virtual memory</h2>
+	</header>
+	
+	Virtual memory is a classic computer science abstraction that has been
+	around for decades and is pivotal to the success of computing. As a
+	result of such success, very often the semantics of virtual memory and
+	memory are interchanged. Our applications refer to "memory" as the
+	place where data is. In reality, our computers understand that
+	applications use virtual memory and translate virtual memory requests to
+	physical memory. It is the job of the operating system and the hardware
+	memory management unit (MMU) to control and oversee physical memory as a
+	shared resource. The virtual memory abstraction provides a flat and
+	linear virtual address space for applications. At the core of this
+	abstraction is <b>address translation</b>, which is the mechanism that
+	maps a virtual address -- an address that our applications use to access
+	data -- to a physical address, i.e., the location in the real hardware
+	where the data is. Beyond address translation, virtual memory is also
+	used for memory <b>protection</b>, the underpinning mechanism that
+	enforces process isolation and security. Finally, the last pillar of
+	virtual  memory is data <b>sharing</b>, which harnesses the fact that
+	many applications may be using the same content (e.g., libraries, code
+	segments and so on) and avoids duplication in the physical
+	memory.<br /><br />
+
+	Virtual memory improves the programmers' productivity, computer systems
+	resource utilization and security. Since its conception, virtual memory
+	has never intended to improve the performance or reduce the peak power
+	of a computer, or any other metric typically used to justify a computer
+	structure. With virtual memory, we want to provide all the benefits
+	described above but with minimal performance overhead, negligible chip area
+	increase, and low additional power. The research on virtual memory
+	focuses on the optimization of these costs aiming to keep all the great
+	things VM brings to the table.<br /><br />
+
+	If you reach out to this page with the intent of learning more about
+	virtual memory and memory management, the following two books are great
+	references. Memory management requires low-level knowledge of how
+	computer systems work. It involves interfacing with hardware and
+	software. The operating system dictates how hardware should operate. The
+	hardware notifies and interrupts the operating system when needed. After
+	understanding all the nuances related to memory management, you will
+	most likely be interested in reading the list of research papers at the
+	bottom of this page. <br /><br />
+	<section>
+	  <div class="panel panel-default">
+	    <b>Material to learn about memory management and virtual memory</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://www.elsevier.com/books/computer-architecture/hennessy/978-0-12-811905-1">
+			Advanced Concepts on Address Translation</a>
+                    </h4>
+		    <p class="author">
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://www.elsevier.com/books/computer-architecture/hennessy/978-0-12-811905-1">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/abhishek-appendix-l.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="http://www.morganclaypoolpublishers.com/catalog_Orig/product_info.php?products_id=1115">
+			Architectural and Operating System Support for Virtual Memory</a>
+                    </h4>
+		    <p class="author">
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://daniellustig.net/">
+			Daniel Lustig</a>
+		      <br>
+		    </p>
+		    <a href="http://www.morganclaypoolpublishers.com/catalog_Orig/product_info.php?products_id=1115">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#book-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="book-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			This book provides computer engineers, academic
+			researchers, new graduate students, and seasoned
+			practitioners an end-to-end overview of virtual
+			memory. We begin with a recap of foundational concepts
+			and discuss not only state-of-the-art virtual memory
+			hardware and software support available today, but also
+			emerging research trends in this space. The span of
+			topics covers processor microarchitecture, memory
+			systems, operating system design, and memory
+			allocation. We show how efficient virtual memory
+			implementations hinge on careful hardware and software
+			cooperation, and we discuss new research directions
+			aimed at addressing emerging problems in this space.
+			</p><p>
+			Virtual memory is a classic computer science abstraction
+			and one of the pillars of the computing revolution. It
+			has long enabled hardware flexibility, software
+			portability, and overall better security, to name just a
+			few of its powerful benefits. Nearly all user-level
+			programs today take for granted that they will have been
+			freed from the burden of physical memory management by
+			the hardware, the operating system, device drivers, and
+			system libraries.
+			</p><p>
+			However, despite its ubiquity in systems ranging from
+			warehouse-scale datacenters to embedded Internet of
+			Things (IoT) devices, the overheads of virtual memory
+			are becoming a critical performance bottleneck
+			today. Virtual memory architectures designed for
+			individual CPUs or even individual cores are in many
+			cases struggling to scale up and scale out to today's
+			systems which now increasingly include exotic hardware
+			accelerators (such as GPUs, FPGAs, or DSPs) and emerging
+			memory technologies (such as non-volatile memory), and
+			which run increasingly intensive workloads (such as
+			virtualized and/or "big data" applications). As such,
+			many of the fundamental abstractions and implementation
+			approaches for virtual memory are being augmented,
+			extended, or entirely rebuilt in order to ensure that
+			virtual memory remains viable and performant in the
+			years to come.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	  </div>
+	</section>
+
+	The following list is a selection of papers related to virtual
+	memory and memory management. They are chronologically sorted. This is a
+	working in progress list, and
+	please <a href="mailto:cox@computer.org">contact us</a> if we missed a
+	virtual memory paper in this list.<br /><br /> 
+
+	<section>
+	  <div class="panel panel-default">
+	    <b>2019</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="">
+			Nimble Page Management for Tiered Memory Systems</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '19</span>
+                    </h4>
+		    <p class="author">
+		      <a href="https://x-y-z.github.io">
+			Zi Yan</a>,
+		      <a href="http://daniellustig.net/">
+			Daniel Lustig</a>,
+		      <a href="http://david.nellans.org/">
+			David Nellans</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/ziyan-asplos19.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-19-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-19-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Software-controlled heterogeneous memory systems have
+			the potential to increase the performance and cost
+			efficiency of computing systems. However they can only
+			deliver on this	promise if supported by efficient page
+			management policies and mechanisms within the operating
+			system (OS). Current OS implementations do not support
+			efficient tiering of data between heterogeneous
+			memories. Instead, they rely on expensive offlining of
+			memory or swapping data to disk as a means of profiling
+			and migrating hot or cold data between memory
+			nodes. They also leave numerous optimizations on the
+			table; for example, multi-threaded hardware is not
+			leveraged to maximize page migration throughput,
+			resulting in up to 95% under-utilization of available
+			memory bandwidth.
+			</p><p>
+			To remedy these shortcomings, we propose and implement a
+			general purpose OS-integrated multi-level memory
+			management system that reuses current OS page tracking
+			structures to tier pages directly between memories with
+			no additional monitoring overhead. We augment this
+			system with four additional optimizations: native
+			support for transparent huge page migration,
+			multi-threaded migration of a page, concurrent migration
+			of multiple pages, and symmetric exchange of
+			pages. Combined, these optimizations dramatically reduce
+			kernel software overheads and improve raw page migration
+			throughput over 15x. Implemented in Linux and evaluated
+			on x86, Power, and ARM64 systems, our OS support for
+			heterogeneous memories improves application performance
+			40% over baseline Linux for a suite of real-world
+			memory-intensive workloads utilizing a multilevel
+			disaggregated memory system.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="">
+			HawkEye: Efficient Fine-grained OS Support for Huge Pages</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '19</span>
+                    </h4>
+		    <p class="author">
+		      Ashish Panwar,
+		      Sorav Bansal,
+		      K. Gopinath
+		      <br>
+		    </p>
+		    <a href="">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cse.iitd.ac.in/~sbansal/pubs/hawkeye.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-19-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-19-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			Effective huge page management in operating systems is
+			necessary for mitigation of address translation
+			overheads. However, this continues to remain a difficult
+			area in OS design. Recent work on Ingens uncovered some
+			interesting pitfalls in current huge page management
+			strategies. Using both page access patterns discovered
+			by the OS kernel and fine-grained data from hardware
+			performance counters, we expose problematic aspects of
+			current huge page management strategies. In our system,
+			called HawkEye/Linux, we demonstrate alternate ways to
+			address issues related to performance, page fault
+			latency and memory bloat; the	primary	ideas behind
+			HawkEye management algorithms are async page
+			pre-zeroing, de-duplication of zero-filled pages,
+			fine-grained page access tracking and measurement of
+			address translation overheads through hardware
+			performance counters. Our evaluation shows that HawkEye
+			is more	performant, robust and better-suited to handle
+			diverse workloads when compared with current
+			state-of-the-art systems.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="">
+			PageSeer: Using Page Walks to Trigger Page Swaps in Hybrid Memory Systems</a>
+		      <span class="badge badge-pill badge-primary">HPCA '19</span>
+                    </h4>
+		    <p class="author">
+		      Apostolos Kokolis,
+		      Dimitrios Skarlatos,
+		      Josep Torrellas
+		      <br>
+		    </p>
+		    <a href="">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://iacoma.cs.uiuc.edu/iacoma-papers/hpca19_2.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-19-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-19-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Hybrid main memories composed of DRAM and Non-Volatile
+			Memory (NVM) combine the capacity benefits of NVM with
+			the low-latency properties of DRAM. For highest
+			performance, data segments should be exchanged between
+			the two types of memories dynamically—a process known as
+			segment swapping—based on the access patterns to the
+			segments in the program. The key difficulty in hardware
+			managed swapping is to identify the appropriate segments
+			to swap between the memories at the right time in the
+			execution.
+			</p><p>
+			To perform hardware-managed segment swapping both
+			accurately and with substantial lead time, this paper
+			proposes to use hints from the page walk in a TLB
+			miss. We call the scheme PageSeer. During the generation
+			of the physical address for a page in a TLB miss, the
+			memory controller is informed. The controller uses
+			historic data on the accesses to that page and to a
+			subsequently-referenced page (i.e., its follower page),
+			to potentially initiate swaps for the page and for its
+			follower. We call these actions MMU-Triggered Prefetch
+			Swaps. PageSeer also initiates other types of page
+			swaps, building a complete solution for hybrid
+			memory. Our evaluation of PageSeer with simulations of
+			26 workloads shows that PageSeer effectively hides the
+			swap overhead and services many requests from the
+			DRAM. Compared to a state-of-the-art hardware-only
+			scheme for hybrid memory management, PageSeer on average
+			improves performance by 19% and reduces the average main
+			memory access time by 29%.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	    
+	    <b>2018</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/MICRO.2018.00030">
+			Scalable Distributed Shared Last-Level TLBs Using
+			Low-Latency Interconnects</a>
+		      <span class="badge badge-pill badge-primary">MICRO '18</span>
+                    </h4>
+		    <p class="author">
+		      Srikant Bharadwaj,
+		      <a href="https://guilhermecox.github.io/">
+			Guilherme Cox</a>,
+		      <a href="http://tusharkrishna.ece.gatech.edu">
+			Tushar Krishna</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/MICRO.2018.00030">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="dw/gcox-micro18.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#micro-18-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="micro-18-abs" class="collapse">
+		      <info>
+			<p></p>
+			Recent studies have shown the potential of last-level
+			TLBs shared by multiple cores in tackling memory
+			translation performance challenges posed by "big data"
+			workloads. A key stumbling block hindering their
+			effectiveness, however, is their high access time. We
+			present a design methodology to reduce these high access
+			times so as to realize high-performance and scalable
+			shared L2 TLBs. As a first step, we study the benefits
+			of replacing monolithic shared TLBs with a distributed
+			set of small TLB slices. While this approach does reduce
+			TLB lookup latency, it increases interconnect delays in
+			accessing remote slices. Therefore, as a second step, we
+			devise a lightweight single-cycle interconnect among the
+			TLB slices by tailoring wires and switches to the unique
+			communication characteristics of memory translation
+			requests and responses. Our approach, which we dub
+			NOCSTAR (NOCs for scalable TLB architecture), combines
+			the high hit rates of shared TLBs with low access times
+			of private L2 TLBs, enabling significant system
+			performance benefits.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/ISCA.2018.00025">
+			Scheduling Page Table Walks for Irregular GPU Applications</a>
+		      <span class="badge badge-pill badge-primary">ISCA '18</span>
+                    </h4>
+		    <p class="author">
+		      Seunghee Shin,
+		      <a href="https://guilhermecox.github.io/">
+			Guilherme Cox</a>,
+		      <a href="https://homes.cs.washington.edu/~oskin/">
+			Mark Oskin</a>,
+		      <a href="https://sites.google.com/site/lohgabe/">
+			Gabriel Loh</a>,
+		      <a href="https://sites.google.com/site/arpersncsu/">
+			Yan Solihin</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://drona.csa.iisc.ac.in/~arkapravab/">
+			Arkaprava Basu</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/ISCA.2018.00025">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="dw/sshin-gcox-isca18.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-18-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-18-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			Recent studies on commercial hardware demonstrated that
+			irregular GPU applications can bottleneck on
+			virtual-to-physical address translations. In this work,
+			we explore ways to reduce address translation overheads
+			for such applications. We discover that the order of
+			servicing GPU's address translation requests
+			(specifically, page table walks) plays a key role in
+			determining the amount of translation overhead
+			experienced by an application. We find that different
+			SIMD instructions executed by an application require
+			vastly different amounts of work to service their
+			address translation needs, primarily depending upon the
+			number of distinct pages they access. We show that
+			better forward progress is achieved by prioritizing
+			translation requests from the instructions that require
+			less work to service their address translation
+			needs. Further, in the GPU's
+			Single-Instruction-Multiple-Thread (SIMT) execution
+			paradigm, all threads that execute in lockstep
+			(wavefront) need to finish operating on their respective
+			data elements (and thus, finish their address
+			translations) before the execution moves ahead. Thus,
+			batching walk requests originating from the same SIMD
+			instruction could reduce unnecessary stalls. We
+			demonstrate that the reordering of translation requests
+			based on the above principles improves the performance
+			of several irregular GPU applications by 30% on average.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/ISCA.2018.00026">
+			SEESAW: Using Superpages to Improve VIPT Caches</a>
+		      <span class="badge badge-pill badge-primary">ISCA '18</span>
+                    </h4>
+		    <p class="author">
+		      Mayank Parasar,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://tusharkrishna.ece.gatech.edu">
+			Tushar Krishna</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/ISCA.2018.00026">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/mparasar-isca18.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-18-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-18-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			Hardware caches balance fast lookup, high hit rates,
+			energy efficiency, and simplicity of implementation. For
+			L1 caches however, achieving this balance is difficult
+			because of constraints imposed by virtual memory. L1
+			caches are usually virtually-indexed and physically
+			tagged (VIPT), but this means that they must be highly
+			associative to achieve good capacity. Unfortunately,
+			excessive associativity compromises performance by
+			degrading access times without significantly boosting
+			hit rates, and increases access energy. We propose
+			SEESAW to overcome this problem. SEESAW leverages the
+			increasing ubiquity of superpages 1 - since super-pages
+			have more page offset bits, they can accommodate VIPT
+			caches with more sets than what is traditionally
+			possible with only base page sizes. SEESAW dynamically
+			reduces the number of ways that are looked up based on
+			the page size, improving performance and energy. SEESAW
+			requires modest hardware and no OS or application changes.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3296957.3173198">
+			LATR: Lazy Translation Coherence</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '18</span>
+                    </h4>
+		    <p class="author">
+		      Mohan Kumar Kumar,
+		      Steffen Maass,
+		      Sanidhya Kashyap,
+		      <a href="http://paul.rutgers.edu/~jv356/">
+			Ján Veselý</a>,
+		      <a href="https://x-y-z.github.io">
+			Zi Yan</a>,
+		      Taesoo Kim,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://tusharkrishna.ece.gatech.edu">
+			Tushar Krishna</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3296957.3173198">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://synergy.ece.gatech.edu/wp-content/uploads/sites/332/2018/01/latr_asplos2018.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-18-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-18-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			We propose LATR-lazy TLB coherence-a software-based TLB
+			shootdown mechanism that can alleviate the overhead of
+			the synchronous TLB shootdown mechanism in existing
+			operating systems. By handling the TLB coherence in a
+			lazy fashion, LATR can avoid expensive IPIs which are
+			required for delivering a shootdown signal to remote
+			cores, and the performance overhead of associated
+			interrupt handlers. Therefore, virtual memory
+			operations, such as free and page migration operations,
+			can benefit significantly from LATR's mechanism. For
+			example, LATR improves the latency of munmap() by 70.8%
+			on a 2-socket machine, a widely used configuration in
+			modern data centers. Real-world, performance-critical
+			applications such as web servers can also benefit from
+			LATR: without any application-level changes, LATR
+			improves Apache by 59.9% compared to Linux, and by 37.9%
+			compared to ABIS, a highly optimized, state-of-the-art
+			TLB coherence technique.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3296957.3173194">
+			Devirtualizing Memory in Heterogeneous Systems</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '18</span>
+                    </h4>
+		    <p class="author">
+		      Swapnil Haria,
+		      Mark D. Hill,
+		      Michael M. Swift
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3296957.3173194">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://pages.cs.wisc.edu/~swapnilh/resources/asplos18_dvm_final.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-18-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-18-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			Accelerators are increasingly recognized as one of the
+			major drivers of future computational growth. For
+			accelerators, shared virtual memory (VM) promises to
+			simplify programming and provide safe data sharing with
+			CPUs. Unfortunately, the overheads of virtual memory,
+			which are high for general-purpose processors, are even
+			higher for accelerators. Providing accelerators with
+			direct access to physical memory (PM) in contrast,
+			provides high performance but is both unsafe and more
+			difficult to program. We propose Devirtualized Memory
+			(DVM) to combine the protection of VM with direct access
+			to PM. By allocating memory such that physical and
+			virtual addresses are almost always identical (VA==PA),
+			DVM mostly replaces page-level address translation with
+			faster region-level Devirtualized Access Validation
+			(DAV). Optionally on read accesses, DAV can be
+			overlapped with data fetch to hide VM overheads. DVM
+			requires modest OS and IOMMU changes, and is transparent
+			to the application. Implemented in Linux 4.10, DVM
+			reduces VM overheads in a graph-processing accelerator
+			to just 1.6% on average. DVM also improves performance
+			by 2.1X over an optimized conventional VM
+			implementation, while consuming 3.9X less dynamic energy
+			for memory management. We further discuss DVM's
+			potential to extend beyond accelerators to CPUs, where
+			it reduces VM overheads to 5% on average, down from 29%
+			for conventional VM.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3296957.3173203">
+			Making Huge Pages Actually Useful</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '18</span>
+                    </h4>
+		    <p class="author">
+		      Ashish Panwar,
+		      Aravinda Prasad,
+		      K. Gopinath
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3296957.3173203">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-18-3-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-18-3-abs" class="collapse">
+		      <info>
+			<p></p>
+			The virtual-to-physical address translation overhead, a
+			major performance bottleneck for modern workloads, can
+			be effectively alleviated with huge pages. However,
+			since huge pages must be mapped contiguously, OSs have
+			not been able to use them well because of the memory
+			fragmentation problem despite hardware support for huge
+			pages being available for nearly two decades. This paper
+			presents a comprehensive study of the interaction of
+			fragmentation with huge pages in the Linux kernel. We
+			observe that when huge pages are used, problems such as
+			high CPU utilization and latency spikes occur because of
+			unnecessary work (e.g., useless page migration)
+			performed by memory management related subsystems due to
+			the poor handling of unmovable (i.e., kernel)
+			pages. This behavior is even more harmful in virtualized
+			systems where unnecessary work may be performed in both
+			guest and host OSs. We present Illuminator, an efficient
+			memory manager that provides various subsystems, such as
+			the page allocator, the ability to track all unmovable
+			pages. It allows subsystems to make informed decisions
+			and eliminate unnecessary work which in turn leads to
+			cost-effective huge page allocations. Illuminator
+			reduces the cost of compaction (up to 99%), improves
+			application performance (up to 2.3x) and reduces the
+			maximum latency of MySQL database server (by
+			30x). Importantly, this work shows the effectiveness of
+			a simple solution for long-standing huge page related problems.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/LCA.2017.2712140">
+			TLB Shootdown Mitigation for Low-Power Many-Core Servers with L1 Virtual Caches</a>
+		      <span class="badge badge-pill badge-primary">CAL '18</span>
+                    </h4>
+		    <p class="author">
+		      <a href="https://sites.google.com/site/binhphamplace/">
+		      	Binh Pham</a>,
+		      Derek Hower,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      Trey Cain
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/LCA.2017.2712140">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/binhpham-cal18.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#cal-18-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="cal-18-abs" class="collapse">
+		      <info>
+			<p></p>
+			Power efficiency has become one of the most important
+			design constraints for high-performance systems. In this
+			paper, we revisit the design of low-power
+			virtually-addressed caches. While virtually-addressed
+			caches enable significant power savings by obviating the
+			need for Translation Lookaside Buffer (TLB) lookups,
+			they suffer from several challenging design issues that
+			curtail their widespread commercial adoption. We focus
+			on one of these challenges-cache flushes due to virtual
+			page remappings. We use detailed studies on an ARM
+			many-core server to show that this problem degrades
+			performance by up to 25 percent for a mix of
+			multi-programmed and multi-threaded
+			workloads. Interestingly, we observe that many of these
+			flushes are spurious, and caused by an indiscriminate
+			invalidation broadcast on ARM architecture. In response,
+			we propose a low-overhead and readily implementable
+			hardware mechanism using bloom filters to reduce
+			spurious invalidations and mitigate their ill effects.
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	    
+	    <b>2017</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://www.usenix.org/conference/atc17/technical-sessions/presentation/amit">
+			Optimizing the TLB Shootdown Algorithm with Page Access Tracking</a>
+		      <span class="badge badge-pill badge-primary">ATC '17</span>
+                    </h4>
+		    <p class="author">
+		      Nadav Amit
+		      <br>
+		    </p>
+		    <a href="https://www.usenix.org/conference/atc17/technical-sessions/presentation/amit">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <a href="https://www.usenix.org/system/files/conference/atc17/atc17-amit.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#atc-17-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="atc-17-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			  The operating system is tasked with maintaining the
+			  coherency of per-core TLBs, necessitating costly
+			  synchronization operations, notably to invalidate stale
+			  mappings. As core-counts increase, the overhead of TLB
+			  synchronization likewise increases and hinders
+			  scalability, whereas existing software optimizations
+			  that attempt to alleviate the problem (like batching)
+			  are lacking.
+			</p><p>
+			  We address this problem by revising the TLB
+			  synchronization subsystem. We introduce several
+			  techniques that detect cases whereby soon-to-be
+			  invalidated mappings are cached by only one TLB or not
+			  cached at all, allowing us to entirely avoid the cost
+			  of synchronization. In contrast to existing
+			  optimizations, our approach leverages hardware page
+			  access tracking. We implement our techniques in Linux
+			  and find that they reduce the number of TLB
+			  invalidations by up to 98% on average and thus improve
+			  performance by up to 78%. Evaluations show that while
+			  our techniques may introduce overheads of up to 9%
+			  when memory mappings are never removed, these
+			  overheads can be avoided by simple hardware
+			  enhancements.
+			  </p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3140659.3080211">
+			Hardware Translation Coherence for Virtualized Systems</a>
+		      <span class="badge badge-pill badge-primary">ISCA '17</span>
+                    </h4>
+		    <p class="author">
+		      <a href="https://x-y-z.github.io">
+			Zi Yan</a>,
+		      <a href="http://paul.rutgers.edu/~jv356/">
+			Jan Vesely</a>,
+		      <a href="https://guilhermecox.github.io/">		
+			Guilherme Cox</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3140659.3080211">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://dl.acm.org/authorize?N30457">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-17-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-17-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			To improve system performance, operating systems (OSes)
+			often undertake activities that require modification of
+			virtual-to-physical address translations. For example,
+			the OS may migrate data between physical pages to manage
+			heterogeneous memory devices. We refer to such
+			activities as page remappings. Unfortunately, page
+			remappings are expensive. We show that a big part of
+			this cost arises from address translation coherence,
+			particularly on systems employing virtualization. In
+			response, we propose hardware translation invalidation
+			and coherence or HATRIC, a readily implementable
+			hardware mechanism to piggyback translation coherence
+			atop existing cache coherence protocols. We perform
+			detailed studies using KVM-based virtualization, showing
+			that HATRIC achieves up to 30% performance and 10%
+			energy benefits, for per-CPU area overheads of 0.2%. We
+			also quantify HATRIC's benefits on systems running Xen
+			and find up to 33% performance improvements.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3079856.3080217">
+			Hybrid TLB Coalescing: Improving TLB Translation Coverage under Diverse Fragmented Memory Allocations</a>
+		      <span class="badge badge-pill badge-primary">ISCA '17</span>
+                    </h4>
+		    <p class="author">
+		      Chang Hyun Park,
+		      Taekyung Heo,
+		      Jungi Jeong,
+		      Jaehyuk Huh
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3079856.3080217">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://iamchanghyunpark.github.io/papers/htc-isca2017.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-17-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-17-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			To mitigate excessive TLB misses in large memory
+			applications, techniques such as large pages, variable
+			length segments, and HW coalescing, increase the
+			coverage of limited hardware translation entries by
+			exploiting the contiguous memory allocation. However,
+			recent studies show that in non-uniform memory systems,
+			using large pages often leads to performance
+			degradation, or allocating large chunks of memory
+			becomes more difficult due to memory
+			fragmentation. Although each of the prior techniques
+			favors its own best chunk size, diverse contiguity of
+			memory allocation in real systems cannot always provide
+			the optimal chunk of each technique. Under such
+			fragmented and diverse memory allocations, this paper
+			proposes a novel HW-SW hybrid translation architecture,
+			which can adapt to different memory mappings
+			efficiently. In the proposed hybrid coalescing
+			technique, the operating system encodes memory
+			contiguity information in a subset of page table
+			entries, called anchor entries. During address
+			translation through TLBs, an anchor entry provides
+			translation for contiguous pages following the anchor
+			entry. As a smaller number of anchor entries can cover a
+			large portion of virtual address space, the efficiency
+			of TLB can be significantly improved. The most important
+			benefit of hybrid coalescing is its ability to change
+			the coverage of the anchor entry dynamically, reflecting
+			the current allocation contiguity status. By using the
+			contiguity information directly set by the operating
+			system, the technique can provide scalable translation
+			coverage improvements with minor hardware changes, while
+			allowing the flexibility of memory allocation. Our
+			experimental results show that across diverse allocation
+			scenarios with different distributions of contiguous
+			memory chunks, the proposed scheme can effectively reap
+			the potential translation coverage improvement from the
+			existing contiguity.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3079856.3080209">
+			Do-It-Yourself Virtual Memory Translation</a>
+		      <span class="badge badge-pill badge-primary">ISCA '17</span>
+                    </h4>
+		    <p class="author">
+		      Hanna Alam,
+		      Tianhao Zhang,
+		      Mattan Erez,
+		      Yoav Etsion
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3079856.3080209">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://lph.ece.utexas.edu/merez/uploads/MattanErez/isca2017_dvmt.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-17-3-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-17-3-abs" class="collapse">
+		      <info>
+			<p></p>
+			In this paper, we introduce the Do-It-Yourself virtual
+			memory translation (DVMT) architecture as a flexible
+			complement for current hardware-fixed translation
+			flows. DVMT decouples the virtual-to-physical mapping
+			process from the access permissions, giving applications
+			freedom in choosing mapping schemes, while maintaining
+			security within the operating system. Furthermore, DVMT
+			is designed to support virtualized environments, as a
+			means to collapse the costly, hardware-assisted
+			two-dimensional translations. We describe the
+			architecture in detail and demonstrate its effectiveness
+			by evaluating several different DVMT schemes on a range
+			of virtualized applications with a model based on
+			measurements from a commercial system. We show that
+			different DVMT configurations preserve the native
+			performance, while achieving speedups of 1.2x to 2.0x in
+			virtualized environments.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3037697.3037704">
+			Efficient Address Translation for Architectures with Multiple Page Sizes</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '17</span>
+                    </h4>
+		    <p class="author">
+		      <a href="https://guilhermecox.github.io/">		
+			Guilherme Cox</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3037697.3037704">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://dl.acm.org/authorize?N24969">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-17-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-17-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			Processors and operating systems (OSes) support multiple
+			memory page sizes. Superpages increase Translation
+			Lookaside Buffer (TLB) hits, while small pages provide
+			fine-grained memory protection. Ideally, TLBs should
+			perform well for any distribution of page sizes. In
+			reality, set-associative TLBs -- used frequently for
+			their energy efficiency compared to fully-associative
+			TLBs -- cannot (easily) support multiple page sizes
+			concurrently. Instead, commercial systems typically
+			implement separate set-associative TLBs for different
+			page sizes. This means that when superpages are
+			allocated aggressively, TLB misses may, counter
+			intuitively, increase even if entries for small pages
+			remain unused (and vice-versa). We invent MIX TLBs,
+			energy-frugal set-associative structures that
+			concurrently support all page sizes by exploiting
+			superpage allocation patterns. MIX TLBs boost the
+			performance (often by 10-30%) of big-memory applications
+			on native CPUs, virtualized CPUs, and GPUs. MIX TLBs are
+			simple and require no OS or program changes.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3093336.3037705">
+			Translation-Triggered Prefetching</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '17</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3093336.3037705">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/abhishek-asplos17.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-17-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-17-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			We propose translation-enabled memory prefetching
+			optimizations or TEMPO, a low-overhead hardware
+			mechanism to boost memory performance by exploiting the
+			operating system's (OS) virtual memory subsystem. We are
+			the first to make the following observations: (1) a
+			substantial fraction (20-40%) of DRAM references in
+			modern big- data workloads are devoted to accessing page
+			tables; and (2) when memory references require page
+			table lookups in DRAM, the vast majority of them (98%+)
+			also look up DRAM for the subsequent data access. TEMPO
+			exploits these observations to enable DRAM row-buffer
+			and on-chip cache prefetching of the data that page
+			tables point to. TEMPO requires trivial changes to the
+			memory controller (under 3% additional area), no OS or
+			application changes, and improves performance by 10-30%
+			and energy by 1-14%.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/3037697.3037710">
+			Page Fault Support for Network Controllers</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '17</span>
+                    </h4>
+		    <p class="author">
+		      Ilya Lesokhin,
+		      Haggai Eran,
+		      Shachar Raindel,
+		      Guy Shapiro,
+		      Sagi Grimberg,
+		      Liran Liss,
+		      Muli Ben-Yehuda,
+		      Nadav Amit,
+		      Dan Tsafrir
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/3037697.3037710">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.technion.ac.il/~dan/papers/npf-asplos-2017.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-17-3-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-17-3-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Direct network I/O allows network controllers (NICs) to
+			expose multiple instances of themselves, to be used by
+			untrusted software without a trusted
+			intermediary. Direct I/O thus frees researchers from
+			legacy software, fueling studies that innovate in
+			multitenant setups. Such studies, however,
+			overwhelmingly ignore one serious problem: direct memory
+			accesses (DMAs) of NICs disallow page faults, forcing
+			systems to either pin entire address spaces to physical
+			memory and thereby hinder memory utilization, or resort
+			to APIs that pin/unpin memory buffers before/after they
+			are DMAed, which complicates the programming model and
+			hampers performance.
+			</p><p>
+			We solve this problem by designing and implementing page
+			fault support for InfiniBand and Ethernet NICs. A main
+			challenge we tackle---unique to NICs---is handling
+			receive DMAs that trigger page faults, leaving the NIC
+			without memory to store the incoming data. We
+			demonstrate that our solution provides all the benefits
+			associated with "regular" virtual memory, notably (1) a
+			simpler programming model that rids users from the need
+			to pin, and (2) the ability to employ all the canonical
+			memory optimizations, such as memory overcommitment and
+			demand-paging based on actual use. We show that, as a
+			result, benchmark performance improves by up to 1.9x.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+
+	    <b>2016</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2896377.2901456">
+			Hash, Don't Cache (the Page Table)</a>
+		      <span class="badge badge-pill badge-primary">SIGMETRICS '16</span>
+                    </h4>
+		    <p class="author">
+		      Idan Yaniv,
+		      Dan Tsafrir
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2896377.2901456">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.technion.ac.il/~dan/papers/hvsr-sigmetrics-2016.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#sigmetrics-16-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="sigmetrics-16-abs" class="collapse">
+		      <info>
+			<p></p>
+			Radix page tables as implemented in the x86-64
+			architecture incur a penalty of four memory references
+			for address translation upon each TLB miss. These 4
+			references become 24 in virtualized setups, accounting
+			for 5%-90% of the runtime and thus motivating chip
+			vendors to incorporate page walk caches
+			(PWCs). Counterintuitively, an ISCA 2010 paper found
+			that radix page tables with PWCs are superior to hashed
+			page tables, yielding up to 5x fewer DRAM accesses per
+			page walk. We challenge this finding and show that it is
+			the result of comparing against a suboptimal hashed
+			implementation--that of the Itanium architecture. We
+			show that, when carefully optimized, hashed page tables
+			in fact outperform existing PWC-aided x86-64 hardware,
+			shortening benchmark runtimes by 1%-27% and 6%-32% in
+			bare-metal and virtualized setups, without resorting to
+			PWCs. We further show that hashed page tables are
+			inherently more scalable than radix designs and are
+			better suited to accommodate the ever increasing memory
+			size; their downside is that they make it more
+			challenging to support such features as superpages.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://www.usenix.org/conference/osdi16/technical-sessions/presentation/kwon">
+			Coordinated and Efficient Huge Page Management with Ingens</a>
+		      <span class="badge badge-pill badge-primary">OSDI '16</span>
+                    </h4>
+		    <p class="author">
+		      Youngjin Kwon,
+		      Hangchen Yu,
+		      Simon Peter,
+		      Christopher J. Rossbach,
+		      Emmett Witchel
+		      <br>
+		    </p>
+		    <a href="https://www.usenix.org/conference/osdi16/technical-sessions/presentation/kwon">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <a href="https://www.usenix.org/system/files/conference/osdi16/osdi16-kwon.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#osdi-16-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="osdi-16-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Modern computing is hungry for RAM, with today’s
+			enormous capacities eagerly consumed by diverse
+			workloads. Hardware address translation overheads have
+			grown with memory capacity, motivating hardware
+			manufacturers to provide TLBs with thousands of entries
+			for large page sizes (called huge pages). Operating
+			systems and hypervisors support huge pages with a
+			hodge-podge of best-effort algorithms and spot fixes
+			that made sense for architectures with limited huge page
+			support, but the time has come for a more fundamental
+			redesign.
+			</p><p>
+			Ingens is a framework for huge page support that relies
+			on a handful of basic primitives to provide transparent
+			huge page support in a principled, coordinated way. By
+			managing contiguity as a first-class resource and by
+			tracking utilization and access frequency of memory
+			pages, Ingens is able to eliminate a number of fairness
+			and performance pathologies that plague current
+			systems. Experiments with our prototype demonstrate
+			fairness improvements, performance improvements (up to
+			18%), tail-latency reduction (up to 41%), and reduction
+			of memory bloat from 69% to less than 1% for important
+			applications like Web services (e.g., the Cloudstone
+			benchmark) and the Redis key-value store.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/ISCA.2016.67">
+			Agile Paging: Exceeding the Best of Nested and Shadow Paging</a>
+		      <span class="badge badge-pill badge-primary">ISCA '16</span>
+                    </h4>
+		    <p class="author">
+		      Jayneel Gandhi,
+		      Mark D. Hill,
+		      Michael M. Swift
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/ISCA.2016.67">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://research.cs.wisc.edu/multifacet/papers/isca16_agile_paging.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-16-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-16-abs" class="collapse">
+		      <info>
+			<p></p>
+			Virtualization provides benefits for many workloads, but
+			the overheads of virtualizing memory are not universally
+			low. The cost comes from managing two levels of address
+			translation - one in the guest virtual machine (VM) and
+			the other in the host virtual machine monitor (VMM) -
+			with either nested or shadow paging. Nested paging
+			directly performs a two-level page walk that makes TLB
+			misses slower than unvirtualized native, but enables
+			fast page tables changes. Alternatively, shadow paging
+			restores native TLB miss speeds, but requires costly VMM
+			intervention on page table updates. This paper proposes
+			agile paging that combines both techniques and exceeds
+			the best of both. A virtualized page walk starts with
+			shadow paging and optionally switches in the same page
+			walk to nested paging where frequent page table updates
+			would cause costly VMM interventions. Agile paging
+			enables most TLB misses to be handled as fast as native
+			while most page table changes avoid VMM intervention. It
+			requires modest changes to hardware (e.g., demark when
+			to switch) and VMM policies (e.g., predict good
+			switching opportunities). We emulate the proposed
+			hardware and prototype the software in Linux with KVM on
+			x86-64. Agile paging performs more than 12% better than
+			the best of the two techniques and comes within 4% of
+			native execution for all workloads.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/ISPASS.2016.7482091">
+			Observations and Opportunities in Architecting Shared Virtual Memory for Heterogeneous Systems</a>
+		      <span class="badge badge-pill badge-primary">ISPASS '16</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://paul.rutgers.edu/~jv356/">
+			Jan Vesely</a>,
+		      <a href="http://drona.csa.iisc.ac.in/~arkapravab/">
+			Arkaprava Basu</a>,
+		      <a href="https://homes.cs.washington.edu/~oskin/">
+			Mark Oskin</a>,
+		      <a href="https://sites.google.com/site/lohgabe/">
+			Gabriel H. Loh</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/ISPASS.2016.7482091">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/jvesely-ispass16.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#ispass-16-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="ispass-16-abs" class="collapse">
+		      <info>
+			<p></p>
+			Computing is becoming increasingly heterogeneous with
+			accelerators like GPUs being tightly integrated with
+			CPUs on the same die. Extending the CPU's virtual
+			addressing mechanism to these accelerators is a key step
+			in making accelerators easily programmable. In this
+			work, we analyze, using real-system measurements, shared
+			virtual memory across the CPU and an integrated GPU. We
+			make several key observations and highlight consequent
+			research opportunities: (1) servicing a TLB miss from
+			the GPU can be an order of magnitude slower than that
+			from the CPU and consequently it is imperative to enable
+			many concurrent TLB misses to hide this larger latency;
+			(2) divergence in memory accesses impacts the GPU's
+			address translation more than the rest of the memory
+			hierarchy, and research in designing address translation
+			mechanisms tolerant to this effect is imperative; and
+			(3) page faults from the GPU are considerably slower
+			than that from the CPU and software-hardware co-design
+			is essential for efficient implementation of page faults
+			from throughput-oriented accelerators like GPUs. We
+			present a detailed measurement study of a commercially
+			available integrated APU that illustrates these effects
+			and motivates future research opportunities.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://dl.acm.org/citation.cfm?id=2901327">
+			Shared Address Translation Revisited</a>
+		      <span class="badge badge-pill badge-primary">EuroSys '16</span>
+                    </h4>
+		    <p class="author">
+		      Xiaowan Dong,
+		      Sandhya Dwarkadas,
+		      Alan L. Cox
+		      <br>
+		    </p>
+		    <a href="https://dl.acm.org/citation.cfm?id=2901327">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://www.cs.rochester.edu/u/xdong/eurosys16.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#eurosys-16-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="eurosys-16-abs" class="collapse">
+		      <info>
+			<p></p>
+			Modern operating systems avoid duplication of code and
+			data when they are mapped by multiple processes by
+			sharing physical memory through mechanisms like
+			copy-on-write. Nonetheless, a separate copy of the
+			virtual address translation structures, such as page
+			tables, are still maintained for each process, even if
+			they are identical. This duplication can lead to
+			inefficiencies in the address translation process and
+			interference within the memory hierarchy. In this paper,
+			we show that on Android platforms, sharing address
+			translation structures, specifically, page tables and
+			TLB entries, for shared libraries can improve
+			performance. For example, at a low level, sharing
+			address translation structures reduces the cost of fork
+			by more than half by reducing page table construction
+			overheads. At a higher level, application launch and IPC
+			are faster due to page fault elimination coupled with
+			better cache and TLB performance when context switching.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2954679.2872399">
+			COATCheck: Verifying Memory Ordering at the Hardware-OS Interface</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '16</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://daniellustig.net/">
+			Daniel Lustig</a>,
+		      Geet Sethi,
+		      <a href="http://www.princeton.edu/~mrm/">
+			Margaret Martonosi</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2954679.2872399">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/dlustig-gsethi-asplos16.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-16-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-16-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			Modern computer systems include numerous compute
+			elements, from CPUs to GPUs to accelerators. Harnessing
+			their full potential requires well-defined,
+			properly-implemented memory consistency models (MCMs),
+			and low-level system functionality such as virtual
+			memory and address translation (AT). Unfortunately, it
+			is difficult to specify and implement hardware-OS
+			interactions correctly; in the past, many hardware and
+			OS specification mismatches have resulted in
+			implementation bugs in commercial processors. In an
+			effort to resolve this verification gap, this paper
+			makes the following contributions. First, we present
+			COATCheck, an address translation-aware framework for
+			specifying and statically verifying memory ordering
+			enforcement at the microarchitecture and operating
+			system levels. We develop a domain-specific language for
+			specifying ordering enforcement, for including
+			ordering-related OS events and hardware
+			micro-operations, and for programmatically enumerating
+			happens-before graphs. Using a fast and automated static
+			constraint solver, COATCheck can efficiently analyze
+			interesting and important memory ordering scenarios for
+			modern, high-performance, out-of-order
+			processors. Second, we show that previous work on
+			Virtual Address Memory Consistency (VAMC) does not
+			capture every translation-related ordering scenario of
+			interest, and that some such cases even fall outside the
+			traditional scope of consistency. We therefore introduce
+			the term transistency model to describe the superset of
+			consistency which captures all translation-aware sets of
+			ordering rules.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2872362.2872379">
+			True IOMMU Protection from DMA Attacks: When Copy is Faster than Zero Copy</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '16</span>
+                    </h4>
+		    <p class="author">
+
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2872362.2872379">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.technion.ac.il/~dan/papers/cim-asplos-2016.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-16-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-16-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Malicious I/O devices might compromise the OS using
+			DMAs. The OS therefore utilizes the IOMMU to map and
+			unmap every target buffer right before and after its DMA
+			is processed, thereby restricting DMAs to their
+			designated locations. This usage model, however, is not
+			truly secure for two reasons: (1) it provides protection
+			at page granularity only, whereas DMA buffers can reside
+			on the same page as other data; and (2) it delays DMA
+			buffer unmaps due to performance considerations,
+			creating a vulnerability window in which devices can
+			access in-use memory. We propose that OSes utilize the
+			IOMMU differently, in a manner that eliminates these two
+			flaws. Our new usage model restricts device access to a
+			set of shadow DMA buffers that are never unmapped, and
+			it copies DMAed data to/from these buffers, thus
+			providing sub-page protection while eliminating the
+			aforementioned vulnerability window. Our key insight is
+			that the cost of interacting with, and synchronizing
+			access to the slow IOMMU hardware---required for
+			zero-copy protection against devices---make copying
+			preferable to zero-copying.
+			</p><p>
+			We implement our model in Linux and evaluate it with
+			standard networking benchmarks utilizing a 40,Gb/s
+			NIC. We demonstrate that despite being more secure than
+			the safest preexisting usage model, our approach
+			provides up to 5x higher throughput. Additionally,
+			whereas it is inherently less scalable than an
+			IOMMU-less (unprotected) system, our approach incurs
+			only 0%--25% performance degradation in comparison.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/HPCA.2016.7446100">
+			Energy-Efﬁcient Address Translation</a>
+		      <span class="badge badge-pill badge-primary">HPCA '16</span>
+                    </h4>
+		    <p class="author">
+		      Vasileios Karakostas,
+		      Jayneel Gandhi,
+		      Adrián Cristal,
+		      Mark D. Hill,
+		      Kathryn S. McKinley,
+		      Mario Nemirovsky,
+		      Michael M. Swift,
+		      Osman S. Unsal
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/HPCA.2016.7446100">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://research.cs.wisc.edu/multifacet/papers/hpca16_energy_efficient_translation.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-16-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-16-abs" class="collapse">
+		      <info>
+			<p></p>
+			Address translation is fundamental to processor
+			performance. Prior work focused on reducing Translation
+			Lookaside Buffer (TLB) misses to improve performance and
+			energy, whereas we show that even TLB hits consume a
+			significant amount of dynamic energy. To reduce the
+			energy cost of address translation, we first propose
+			Lite, a mechanism that monitors the performance and
+			utility of L1 TLBs, and adaptively changes their sizes
+			with way-disabling. The resulting TLBLite organization
+			opportunistically reduces the dynamic energy spent in
+			address translation by 23% on average with minimal
+			impact on TLB miss cycles. To further reduce the energy
+			and performance overheads of L1 TLBs, we also propose
+			RMMLite that targets the recently proposed Redundant
+			Memory Mappings (RMM) address-translation mechanism. RMM
+			maps most of a process's address space with arbitrarily
+			large ranges of contiguous pages in both virtual and
+			physical address space using a modest number of entries
+			in a range TLB. RMMLite adds to RMM an L1-range TLB and
+			the Lite mechanism. The high hit ratio of the L1-range
+			TLB allows Lite to downsize the L1-page TLBs more
+			aggressively. RMMLite reduces the dynamic energy spent
+			in address translation by 71% on average. Above the
+			near-zero L2 TLB misses from RMM, RMMLite further
+			reduces the overhead from L1 TLB misses by 99%. These
+			proposed designs target current and future
+			energy-efficient memory system design to meet the ever
+			increasing memory demands of applications.
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	    
+	    <b>2015</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/TC.2015.2401022">
+			Fast Two-Level Address Translation for Virtualized Systems</a>
+		      <span class="badge badge-pill badge-primary">TC '15</span>
+                    </h4>
+		    <p class="author">
+		      Jeongseob Ahn,
+		      Seongwook Jin,
+		      Jaehyuk Huh
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/TC.2015.2401022">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#tc-15-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="tc-15-abs" class="collapse">
+		      <info>
+			<p></p>
+			Recently, there have been several improvements in
+			architectural supports for two-level address translation
+			for virtualized systems. However, those improvements
+			including HW-based two-dimensional (2D) page walkers
+			have extended the traditional multi-level page tables,
+			without considering the memory management
+			characteristics of virtual machines. This paper exploits
+			the unique behaviors of the hypervisor, and proposes
+			three new nested address translation schemes for
+			virtualized systems. The first scheme called nested
+			segmentation is designed for static memory allocation,
+			and uses HW segmentation to map the VM memory directly
+			to large contiguous memory regions. The second scheme
+			proposes to use a flat nested page table for each VM,
+			reducing memory accesses by the current 2D page
+			walkers. The third scheme uses speculative inverted
+			shadow paging, backed by non-speculative flat nested
+			page tables. The speculative mechanism provides direct
+			translation with a single memory reference for common
+			cases without page table synchronization overheads. We
+			evaluate the proposed schemes with the Xen hypervisor
+			running on a full system simulator. Nested segmentation
+			can reduce the overheads of two-level translation
+			significantly for a certain cloud computing model. The
+			nested segmentation, flat page tables, and speculative
+			shadowing improve a state-of-the-art 2D page walker by
+			10, 7, and 14 percent respectively.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2830772.2830773">
+			Large Pages and Lightweight Memory Management in Virtualized Environments: Can You Have it Both Ways?</a>
+		      <span class="badge badge-pill badge-primary">MICRO '15</span>
+                    </h4>
+		    <p class="author">
+		      <a href="https://sites.google.com/site/binhphamplace/">
+		      	Binh Pham</a>,
+		      <a href="http://paul.rutgers.edu/~jv356/">
+			Jan Vesely</a>,
+		      <a href="https://sites.google.com/site/lohgabe/">
+			Gabriel H. Loh</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2830772.2830773">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/binhpham-micro15.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#micro-15-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="micro-15-abs" class="collapse">
+		      <info>
+			<p></p>
+			Large pages have long been used to mitigate address
+			translation overheads on big-memory systems,
+			particularly in virtualized environments where TLB miss
+			overheads are severe. We show, however, that far from
+			being a panacea, large pages are used sparingly by
+			modern virtualization software. This is because large
+			pages often preclude lightweight memory management,
+			which can outweigh their Translation Lookaside Buffer
+			(TLB) benefits. For example, they reduce opportunities
+			to deduplicate memory among virtual machines in
+			overcommitted systems, interfere with lightweight memory
+			monitoring, and hamper the agility of virtual machine
+			(VM) migrations. While many of these problems are
+			particularly severe in overcommitted systems with scarce
+			memory resources, they can (and often do) exist
+			generally in cloud deployments. In response,
+			virtualization software often (though it doesn't have
+			to) splinters guest operating system (OS) large pages
+			into small system physical pages, sacrificing address
+			translation performance for overall system-level
+			benefits. We introduce simple hardware that bridges this
+			fundamental conflict, using speculative techniques to
+			group contiguous, aligned small page translations such
+			that they approach the address translation performance
+			of large pages. Our Generalized Large-page Utilization
+			Enhancements (GLUE) allow system hypervisors to splinter
+			large pages for agile memory management, while retaining
+			almost all of the TLB performance of unsplintered large
+			pages.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://www.usenix.org/conference/atc15/technical-session/presentation/peleg">
+			Utilizing the IOMMU Scalably</a>
+		      <span class="badge badge-pill badge-primary">ATC '15</span>
+                    </h4>
+		    <p class="author">
+		      Omer Peleg,
+		      Adam Morrison,
+		      Benjamin Serebrin,
+		      Dan Tsafrir
+		      <br>
+		    </p>
+		    <a href="https://www.usenix.org/conference/atc15/technical-session/presentation/peleg">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <a href="https://www.usenix.org/system/files/conference/atc15/atc15-paper-peleg.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#atc-15-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="atc-15-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			  IOMMUs provided by modern hardware allow the OS to
+			  enforce memory protection controls on the DMA
+			  operations of its I/O devices. An IOMMU translation
+			  management design must scalably handle frequent
+			  concurrent updates of IOMMU translations made by
+			  multiple cores, which occur in high throughput I/O
+			  workloads such as multi-Gb/s networking. Today,
+			  however, OSes experience performance meltdowns when
+			  using the IOMMU in such workloads.
+			  </p><p>
+			  This paper explores scalable IOMMU management designs
+			  and addresses the two main bottlenecks we find in
+			  current OSes: (1) assignment of I/O virtual addresses
+			  (IOVAs), and (2) management of the IOMMU’s TLB.
+			  </p><p>
+			  We propose three approaches for scalable IOVA
+			  assignment: (1) dynamic identity mappings, which
+			  eschew IOVA allocation altogether, (2) allocating
+			  IOVAs using the kernel’s kmalloc, and (3) per-core
+			  caching of IOVAs allocated by a globally-locked IOVA
+			  allocator. We further describe a scalable IOMMU TLB
+			  management scheme that is compatible with all these
+			  approaches.
+			  </p><p>
+			  Evaluation of our designs under Linux shows that (1)
+			  they achieve 88.5%–100% of the performance obtained
+			  without an IOMMU, (2) they achieve similar latency to
+			  that obtained without an IOMMU, (3) scalable IOVA
+			  allocation and dynamic identity mappings perform
+			  comparably, and (4) kmalloc provides a simple solution
+			  with high performance, but can suffer from unbounded
+			  page table blowup.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2749469.2749471">
+			Redundant Memory Mappings for Fast Access to Large Memories</a>
+		      <span class="badge badge-pill badge-primary">ISCA '15</span>
+                    </h4>
+		    <p class="author">
+		      Vasileios Karakostas,
+		      Jayneel Gandhi,
+		      Furkan Ayar,
+		      Adrián Cristal,
+		      Mark D. Hill,
+		      Kathryn S. McKinley,
+		      Mario Nemirovsky,
+		      Michael M. Swift,
+		      Osman Ünsal
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2749469.2749471">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://research.cs.wisc.edu/multifacet/papers/isca15_redundant_memory_mappings.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-15-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-15-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Page-based virtual memory improves programmer
+			productivity, security, and memory utilization, but
+			incurs performance overheads due to costly page table
+			walks after TLB misses. This overhead can reach 50% for
+			modern workloads that access increasingly vast memory
+			with stagnating TLB sizes.
+			</p><p>
+			To reduce the overhead of virtual memory, this paper
+			proposes Redundant Memory Mappings (RMM), which leverage
+			ranges of pages and provides an efficient, alternative
+			representation of many virtual-to-physical mappings. We
+			define a range be a subset of process's pages that are
+			virtually and physically contiguous. RMM translates each
+			range with a single range table entry, enabling a modest
+			number of entries to translate most of the process's
+			address space. RMM operates in parallel with standard
+			paging and uses a software range table and hardware
+			range TLB with arbitrarily large reach. We modify the
+			operating system to automatically detect ranges and to
+			increase their likelihood with eager page
+			allocation. RMM is thus transparent to applications.
+			</p><p>
+			We prototype RMM software in Linux and emulate the
+			hardware. RMM performs substantially better than paging
+			alone and huge pages, and improves a wider variety of
+			workloads than direct segments (one range per program),
+			reducing the overhead of virtual memory to less than 1%
+			on average.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2694344.2694355">
+			rIOMMU: Efficient IOMMU for I/O Devices that Employ Ring Buffers</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '15</span>
+                    </h4>
+		    <p class="author">
+		      Fei Guo,
+		      Seongbeom Kim,
+		      Yury Baskakov,
+		      Ishan Banerjee
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2694344.2694355">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.technion.ac.il/~dan/papers/riommu-asplos-2015.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-15-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-15-abs" class="collapse">
+		      <info>
+			<p></p>
+			The IOMMU allows the OS to encapsulate I/O devices in
+			their own virtual memory spaces, thus restricting their
+			DMAs to specific memory pages. The OS uses the IOMMU to
+			protect itself against buggy drivers and
+			malicious/errant devices. But the added protection comes
+			at a cost, degrading the throughput of I/O-intensive
+			workloads by up to an order of magnitude. This cost has
+			motivated system designers to trade off some safety for
+			performance, e.g., by leaving stale information in the
+			IOTLB for a while so as to amortize costly
+			invalidations. We observe that high-bandwidth
+			devices like network and PCIe SSD controllers interact
+			with the OS via circular ring buffers that induce a
+			sequential, predictable workload. We design a ring IOMMU
+			(rIOMMU) that leverages this characteristic by replacing
+			the virtual memory page table hierarchy with a circular,
+			flat table. A flat table is adequately supported by
+			exactly one IOTLB entry, making every new translation an
+			implicit invalidation of the former and thus requiring
+			explicit invalidations only at the end of I/O
+			bursts. Using standard networking benchmarks, we show
+			that rIOMMU provides up to 7.56x higher throughput
+			relative to the baseline IOMMU, and that it is within
+			0.77-1.00x the throughput of a system without IOMMU
+			protection.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2731186.2731187">
+			Proactively Breaking Large Pages to Improve Memory Overcommitment Performance in VMware ESXi</a>
+		      <span class="badge badge-pill badge-primary">VEE '15</span>
+                    </h4>
+		    <p class="author">
+		      Fei Guo,
+		      Seongbeom Kim,
+		      Yury Baskakov,
+		      Ishan Banerjee
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2731186.2731187">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#vee-15-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="vee-15-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			VMware ESXi leverages hardware support for MMU
+			virtualization available in modern Intel/AMD CPUs. To
+			optimize address translation performance when running on
+			such CPUs, ESXi preferably uses host large pages (2MB in
+			x86-64 systems) to back VM's guest memory. While using
+			host large pages provides best performance when host has
+			sufficient free memory, it increases host memory
+			pressure and effectively defeats page sharing. Hence,
+			the host is more likely to hit the point where ESXi has
+			to reclaim VM memory through much more expensive
+			techniques such as ballooning or host swapping. As a
+			result, using host large pages may significantly hurt
+			consolidation ratio.
+			</p><p>
+			To deal with this problem, we propose a new host large
+			page management policy that allows to: a) identify
+			'cold' large pages and break them even when host has
+			plenty of free memory; b) break all large pages
+			proactively when host free memory becomes scarce, but
+			before the host starts ballooning or swapping; c)
+			reclaim the small pages within the broken large pages
+			through page sharing. With the new policy, the shareable
+			small pages can be shared much earlier and the amount of
+			memory that needs to be ballooned or swapped can be
+			largely reduced when host memory pressure is high. We
+			also propose an algorithm to dynamically adjust the page
+			sharing rate when proactively breaking large pages using
+			a VM large page shareability estimator for higher
+			efficiency.
+			</p><p>
+			Experimental results show that the proposed large page
+			management policy can improve the performance of various
+			workloads up to 2.1x by significantly reducing the
+			amount of ballooned or swapped memory when host memory
+			pressure is high. Applications still fully benefit from
+			host large pages when memory pressure is low.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/HPCA.2015.7056035">
+			Supporting Superpages in Non-Contiguous Physical Memory</a>
+		      <span class="badge badge-pill badge-primary">HPCA '15</span>
+                    </h4>
+		    <p class="author">
+		      Yu Du,
+		      Miao Zhou,
+		      Bruce R. Childers,
+		      Daniel Mossé,
+		      Rami Melhem
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/HPCA.2015.7056035">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://people.cs.pitt.edu/~childers/CS3410/hpca-2015-yu-final.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-15-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-15-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			For memory-intensive workloads with large memory
+			footprints, superpages are effective to avoid address
+			translation overhead, which can be a critical
+			performance bottleneck. A superpage is a large virtual
+			memory page that is mapped to an equivalently-sized
+			amount of contiguous physical memory pages. Superpage
+			mapping assumes physical memory does not contain retired
+			pages, which is an important technique to improve memory
+			resilience: the OS avoids allocating physical pages that
+			have detected errors. Retired pages create unusable
+			"holes" in the physical memory. We show that even a
+			small percentage of retired pages makes it very
+			difficult to find enough contiguous memory to form
+			superpages. To address this problem, we propose GTSM, or
+			gap-tolerant sequential mapping, that allows superpages
+			to be formed even in the presence of retired physical
+			pages. A new page table format is also proposed to
+			support GTSM. This format has similar storage efficiency
+			as traditional superpaging to hold address translations
+			in the last-level cache. To further compress the page
+			table and improve cache hit rates for address
+			translation in large memory footprint workloads, we also
+			propose an extended format that reduces the page table
+			size by 50%. In comparison to an ideal memory without
+			any retired physical pages, we show that our technique,
+			with retired pages, achieves nearly 96.8% of the
+			performance of traditional 2MB superpaging.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/HPCA.2015.7056034">
+			Prediction-Based Superpage-Friendly TLB Designs</a>
+		      <span class="badge badge-pill badge-primary">HPCA '15</span>
+                    </h4>
+		    <p class="author">
+		      Misel-Myrto Papadopoulou,
+		      Xin Tong,
+		      <a href="https://team.inria.fr/pacap/members/andre-seznec/">
+			André Seznec</a>,
+		      Andreas Moshovos
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/HPCA.2015.7056034">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://class.ece.iastate.edu/tyagi/cpre581/papers/HPCA15TLB.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-15-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-15-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			This work demonstrates that a set of commercial and
+			scale-out applications exhibit significant use of
+			superpages and thus suffer from the fixed and small
+			superpage TLB structures of some modern core
+			designs. Other processors better cope with superpages at
+			the expense of using power-hungry and slow
+			fully-associative TLBs. We consider alternate designs
+			that allow all pages to freely share a single,
+			power-efficient and fast set-associative TLB. We propose
+			a prediction-guided multi-grain TLB design that uses a
+			superpage prediction mechanism to avoid multiple lookups
+			in the common case. In addition, we evaluate the
+			previously proposed skewed TLB which builds on
+			principles similar to those used in skewed associative
+			caches. We enhance the original skewed TLB design by
+			using page size prediction to increase its effective
+			associativity. Our prediction-based multi-grain TLB
+			design delivers more hits and is more power efficient
+			than existing alternatives. The predictor uses a 32-byte
+			prediction table indexed by base register values.
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+
+	    <b>2014</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/MICRO.2014.37">
+			Efficient Memory Virtualization: Reducing Dimensionality of Nested Page Walks</a>
+		      <span class="badge badge-pill badge-primary">MICRO '14</span>
+                    </h4>
+		    <p class="author">
+		      Jayneel Gandhi,
+		      <a href="http://drona.csa.iisc.ac.in/~arkapravab/">
+			Arkaprava Basu</a>,
+		      Mark D. Hill,
+		      Michael M. Swift
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/MICRO.2014.37">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://research.cs.wisc.edu/multifacet/papers/micro14_virtualization.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#micro-14-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="micro-14-abs" class="collapse">
+		      <info>
+			<p></p>
+			Virtualization provides value for many workloads, but
+			its cost rises for workloads with poor memory access
+			locality. This overhead comes from translation look
+			aside buffer (TLB) misses where the hardware performs a
+			2D page walk (up to 24 memory references on x86-64)
+			rather than a native TLB miss (up to only 4 memory
+			references). The first dimension translates guest
+			virtual addresses to guest physical addresses, while the
+			second translates guest physical addresses to host
+			physical addresses. This paper proposes new hardware
+			using direct segments with three new virtualized modes
+			of operation that significantly speed-up virtualized
+			address translation. Further, this paper proposes two
+			novel techniques to address important limitations of
+			original direct segments. First, self-ballooning reduces
+			fragmentation in physical memory, and addresses the
+			architectural input/output (I/O) gap in x86-64. Second,
+			an escape filter provides alternate translations for
+			exceptional pages within a direct segment (e.g.,
+			Physical pages with permanent hard faults). We emulate
+			the proposed hardware and prototype the software in
+			Linux with KVM on x86-64. One mode -- VMM Direct --
+			reduces address translation overhead to near-native
+			without guest application or OS changes (2% slower than
+			native on average), while a more aggressive mode -- Dual
+			Direct -- on big-memory workloads performs
+			better-than-native with near-zero translation overhead.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2594290">
+			Tom Kilburn: A Tale of Five Computers</a>
+		      <span class="badge badge-pill badge-primary">CACM '14</span>
+                    </h4>
+		    <p class="author">
+		      David Anderson
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2594290">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://cacm.acm.org/magazines/2014/5/174355-tom-kilburn/fulltext">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#cacm-14-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="cacm-14-abs" class="collapse">
+		      <info>
+			<p></p>
+			Reflections on a British computer engineer who
+			influenced several important machines, including the
+			first stored-program computer.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2644865.2541942">
+			Architectural Support for Address Translation on GPUs</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '14</span>
+                    </h4>
+		    <p class="author">
+		      Bharath Pichai,
+		      Lisa Hsu,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2644865.2541942">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/bpichai-asplos14.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-14-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-14-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			The proliferation of heterogeneous compute platforms, of
+			which CPU/GPU is a prevalent example, necessitates a
+			manageable programming model to ensure widespread
+			adoption. A key component of this is a shared unified
+			address space between the heterogeneous units to obtain
+			the programmability benefits of virtual memory.
+			</p><p>
+			To this end, we are the first to explore GPU Memory
+			Management Units(MMUs) consisting of Translation
+			Lookaside Buffers (TLBs) and page table walkers (PTWs)
+			for address translation in unified heterogeneous
+			systems. We show the performance challenges posed by GPU
+			warp schedulers on TLBs accessed in parallel with L1
+			caches, which provide many well-known programmability
+			benefits. In response, we propose modest TLB and PTW
+			augmentations that recover most of the performance lost
+			by introducing L1 parallel TLB access. We also show that
+			a little TLB-awareness can make other GPU performance
+			enhancements (e.g., cache-conscious warp scheduling and
+			dynamic warp formation on branch divergence) feasible in
+			the face of cache-parallel address translation, bringing
+			overheads in the range deemed acceptable for CPUs
+			(10-15\% of runtime). We presume this initial design
+			leaves room for improvement but anticipate that our
+			bigger insight, that a little TLB-awareness goes a long
+			way in GPUs, will spur further work in this fruitful
+			area.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/HPCA.2014.6835964">
+			Increasing TLB Reach by Exploiting Clustering in Page Translations</a>
+		      <span class="badge badge-pill badge-primary">HPCA '14</span>
+                    </h4>
+		    <p class="author">
+		      <a href="https://sites.google.com/site/binhphamplace/">
+		      	Binh Pham</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      Yasuko Eckert,
+		      <a href="https://sites.google.com/site/lohgabe/">
+			Gabriel H. Loh</a>,
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/HPCA.2014.6835964">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/binhpham-hpca14.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-14-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-14-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			The steadily increasing sizes of main memory capacities
+			require corresponding increases in the processor's
+			translation lookaside buffer (TLB) resources to avoid
+			performance bottlenecks. Large operating system page
+			sizes can mitigate the bottleneck with a smaller TLB,
+			but most OSs and applications do not fully utilize the
+			large-page support in current hardware. Recent work has
+			shown that, while not guaranteed, some
+			virtual-to-physical page mappings exhibit “contiguous”
+			spatial locality in which consecutive virtual pages map
+			to consecutive physical pages. Such locality provides
+			opportunities to coalesce “adjacent” TLB entries for
+			increased reach. We observe that beyond simple
+			adjacent-entry coalescing, many more translations
+			exhibit “clustered” spatial locality in which a group or
+			cluster of nearby virtual pages map to a similarly
+			clustered set of physical pages. In this work, we
+			provide a detailed characterization of the spatial
+			locality among the virtual-to-physical
+			translations. Based on this characterization, we present
+			a multi-granular TLB organization that significantly
+			increases its effective reach and reduces miss rates
+			substantially while requiring no additional OS
+			support. Our evaluation shows that the multi-granular
+			design outperforms conventional TLBs and the recently
+			proposed coalesced TLBs technique.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/HPCA.2014.6835965">
+			Supporting x86-64 Address Translation for 100s of GPU Lanes
+		      </a>
+		      <span class="badge badge-pill badge-primary">HPCA '14</span>
+                    </h4>
+		    <p class="author">
+		      Jason Power,
+		      Mark D. Hill,
+		      David A. Wood
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/HPCA.2014.6835965">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://research.cs.wisc.edu/multifacet/papers/hpca14_gpummu_appendix.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-14-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-14-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			Efficient memory sharing between CPU and GPU threads can
+			greatly expand the effective set of GPGPU workloads. For
+			increased programmability, this memory should be
+			uniformly virtualized, necessitating compatible address
+			translation support for GPU memory references. However,
+			even a modest GPU might need 100s of translations per
+			cycle (6 CUs * 64 lanes/CU) with memory access patterns
+			designed for throughput more than locality. To drive GPU
+			MMU design, we examine GPU memory reference behavior
+			with the Rodinia benchmarks and a database sort to find:
+			(1) the coalescer and scratchpad memory are effective
+			TLB bandwidth filters (reducing the translation rate by
+			6.8x on average), (2) TLB misses occur in bursts (60
+			concurrently on average), and (3) postcoalescer TLBs
+			have high miss rates (29% average). We show how a
+			judicious combination of extant CPU MMU ideas satisfies
+			GPU MMU demands for 4 KB pages with minimal overheads
+			(an average of less than 2% over ideal address
+			translation). This proof-of-concept design uses
+			per-compute unit TLBs, a shared highly-threaded page
+			table walker, and a shared page walk cache.
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	    
+	    <b>2013</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2540708.2540741">
+			Large-Reach Memory Management Unit Caches</a>
+		      <span class="badge badge-pill badge-primary">MICRO '13</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2540708.2540741">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/abhishek-micro13.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#micro-13-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="micro-13-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Within the ever-important memory hierarchy, little
+			research is devoted to Memory Management Unit (MMU)
+			caches, implemented in modern processors to accelerate
+			Translation Lookaside Buffer (TLB) misses. MMU caches
+			play a critical role in determining system
+			performance. This paper presents a measurement study
+			quantifying the size of that role, and describes two
+			novel optimizations to improve the performance of this
+			structure on a range of sequential and parallel big-data
+			workloads. The first is a software/hardware optimization
+			that requires modest operating system (OS) and hardware
+			support. In this approach, the OS allocates page table
+			pages in ways that make them amenable for coalescing in
+			MMU caches, increasing their hit rates. The second is a
+			readily-implementable hardware-only approach, replacing
+			standard per-core MMU caches with a single shared MMU
+			cache of the same total area. Despite its additional
+			access latencies, reduced miss rates greatly improve
+			performance. The approaches are orthogonal; together,
+			they achieve performance close to ideal MMU caches.
+			</p><p>
+			Overall, this paper addresses the paucity of research on
+			MMU caches. Our insights will assist the development of
+			high-performance address translation support for systems
+			running big-data applications.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2485922.2485943">
+			Efficient Virtual Memory for Big Memory Servers</a>
+		      <span class="badge badge-pill badge-primary">ISCA '13</span>
+                    </h4>
+		    <p class="author">
+		      Arkaprava Basu,
+		      Jayneel Gandhi,
+		      Jichuan Chang,
+		      Mark D. Hill,
+		      Michael M. Swift
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2485922.2485943">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://research.cs.wisc.edu/multifacet/papers/isca13_direct_segment.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-13-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-13-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Our analysis shows that many "big-memory" server
+			workloads, such as databases, in-memory caches, and
+			graph analytics, pay a high cost for page-based virtual
+			memory. They consume as much as 10% of execution cycles
+			on TLB misses, even using large pages. On the other
+			hand, we find that these workloads use read-write
+			permission on most pages, are provisioned not to swap,
+			and rarely benefit from the full flexibility of
+			page-based virtual memory.
+			</p><p>
+			To remove the TLB miss overhead for big-memory
+			workloads, we propose mapping part of a process's linear
+			virtual address space with a direct segment, while page
+			mapping the rest of the virtual address space. Direct
+			segments use minimal hardware---base, limit and offset
+			registers per core---to map contiguous virtual memory
+			regions directly to contiguous physical memory. They
+			eliminate the possibility of TLB misses for key data
+			structures such as database buffer pools and in-memory
+			key-value stores. Memory mapped by a direct segment may
+			be converted back to paging when needed.
+			</p><p>
+			We prototype direct-segment software support for x86-64
+			in Linux and emulate direct-segment hardware. For our
+			workloads, direct segments eliminate almost all TLB
+			misses and reduce the execution time wasted on TLB
+			misses to less than 0.5%.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2445572.2445574">
+			TLB Improvements for Chip Multiprocessors: Inter-Core Cooperative TLB Prefetchers and Shared Last-Level TLBs</a>
+		      <span class="badge badge-pill badge-primary">TACO '13</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://daniellustig.net/">
+			Daniel Lustig</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://www.princeton.edu/~mrm/">
+			Margaret Martonosi</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2445572.2445574">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/dlustig-taco13.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#taco-13-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="taco-13-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Translation Lookaside Buffers (TLBs) are critical to
+			overall system performance. Much past research has
+			addressed uniprocessor TLBs, lowering access times and
+			miss rates. However, as Chip MultiProcessors (CMPs)
+			become ubiquitous, TLB design and performance must be
+			reevaluated. Our article begins by performing a thorough
+			TLB performance evaluation of sequential and parallel
+			benchmarks running on a real-world, modern CMP system
+			using hardware performance counters. This analysis
+			demonstrates the need for further improvement of TLB hit
+			rates for both classes of application, and it also
+			points out that the data TLB has a significantly higher
+			miss rate than the instruction TLB in both cases.
+			</p><p>
+			In response to the characterization data, we propose and
+			evaluate both Inter-Core Cooperative (ICC) TLB
+			prefetchers and Shared Last-Level (SLL) TLBs as
+			alternatives to the commercial norm of private, per-core
+			L2 TLBs. ICC prefetchers eliminate 19% to 90% of Data
+			TLB (D-TLB) misses across parallel workloads while
+			requiring only modest changes in hardware. SLL TLBs
+			eliminate 7% to 79% of D-TLB misses for parallel
+			workloads and 35% to 95% of D-TLB misses for
+			multiprogrammed sequential workloads. This corresponds
+			to 27% and 21% increases in hit rates as compared to
+			private, per-core L2 TLBs, respectively, and is achieved
+			this using even more modest hardware requirements.
+			</p><p>
+			Because of their benefits for parallel applications,
+			their applicability to sequential workloads, and their
+			readily implementable hardware, SLL TLBs and ICC TLB
+			prefetchers hold great promise for CMPs.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	    
+	    <b>2012</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/MICRO.2012.32">
+		        CoLT: Coalesced Large-Reach TLBs</a>
+		      <span class="badge badge-pill badge-primary">MICRO '12</span>
+                    </h4>
+		    <p class="author">
+		      <a href="https://sites.google.com/site/binhphamplace/">
+			Binh Pham</a>,
+		      Viswanathan Vaidyanathan,
+		      <a href="http://www.jaleels.org/ajaleel/">
+			Aamer Jaleel</a>,
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/MICRO.2012.32">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/binhpham-micro12.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#micro-12-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="micro-12-abs" class="collapse">
+		      <info>
+			<p></p>
+			Translation Look aside Buffers (TLBs) are critical to
+			system performance, particularly as applications demand
+			larger working sets and with the adoption of
+			virtualization. Architectural support for super pages
+			has previously been proposed to improve TLB
+			performance. By allocating contiguous physical pages to
+			contiguous virtual pages, the operating system (OS)
+			constructs super pages which need just one TLB entry
+			rather than the hundreds required for the constituent
+			base pages. While this greatly reduces TLB misses, these
+			gains are often offset by the implementation
+			difficulties of generating and managing ample contiguity
+			for super pages. We show, however, that basic OS memory
+			allocation mechanisms such as buddy allocators and
+			memory compaction naturally assign contiguous physical
+			pages to contiguous virtual pages. Our real-system
+			experiments show that while usually insufficient for
+			super pages, these intermediate levels of contiguity
+			exist under various system conditions and even under
+			high load. In response, we propose Coalesced Large-Reach
+			TLBs (CoLT), which leverage this intermediate contiguity
+			to coalesce multiple virtual-to-physical page
+			translations into single TLB entries. We show that CoLT
+			implementations eliminate 40% to 58% of TLB misses on
+			average, improving performance by 14%. Overall, we
+			demonstrate that the OS naturally generates page
+			allocation contiguity. CoLT exploits this contiguity to
+			eliminate TLB misses for next-generation, big-data
+			applications with low-overhead implementations.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2366231.2337214">
+		        Revisiting Hardware-Assisted Page Walks for Virtualized Systems</a>
+		      <span class="badge badge-pill badge-primary">ISCA '12</span>
+                    </h4>
+		    <p class="author">
+		      Jeongseob Ahn,
+		      Seongwook Jin,
+		      Jaehyuk Huh
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2366231.2337214">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://jeongseob.github.io/papers/ahn_isca12.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-12-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-12-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Recent improvements in architectural supports for
+			virtualization have extended traditional hardware page
+			walkers to traverse nested page tables. However, current
+			two-dimensional (2D) page walkers have been designed
+			under the assumption that the usage patterns of guest
+			and nested page tables are similar. In this paper, we
+			revisit the architectural supports for nested page table
+			walks to incorporate the unique characteristics of
+			memory management by hypervisors. Unlike page tables in
+			native systems, nested page table sizes do not impose
+			significant overheads on the overall memory usage. Based
+			on this observation, we propose to use flat nested page
+			tables to reduce unnecessary memory references for
+			nested walks.
+			</p><p>
+			A competing mechanism to HW 2D page walkers is shadow
+			paging, which duplicates guest page tables but provides
+			direct translations from guest virtual to system
+			physical addresses. However, shadow paging has been
+			suffering from the overheads of synchronization between
+			guest and shadow page tables. The second mechanism we
+			propose is a speculative shadow paging mechanism, called
+			speculative inverted shadow paging, which is backed by
+			non-speculative flat nested page tables. The speculative
+			mechanism provides a direct translation with a single
+			memory reference for common cases, and eliminates the
+			page table synchronization overheads. We evaluate the
+			proposed schemes with the real Xen hypervisor running on
+			a full system simulator. The flat page tables improve a
+			state-of-the-art 2D page walker with a page walk cache
+			and nested TLB by 7%. The speculative shadow paging
+			improves the same 2D page walker by 14%.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	    
+	    <b>2011</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/2024723.2000101">
+			SpecTLB: a mechanism for speculative address translation</a>
+		      <span class="badge badge-pill badge-primary">ISCA '11</span>
+                    </h4>
+		    <p class="author">
+		      Thomas W. Barr,
+		      Alan L. Cox,
+		      Scott Rixner
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/2024723.2000101">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://courses.physics.illinois.edu/ece598ms/sp2018/papers/paper32.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-11-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-11-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Data-intensive computing applications are using more and
+			more memory and are placing an increasing load on the
+			virtual memory system. While the use of large pages can
+			help alleviate the overhead of address translation, they
+			limit the control the operating system has over memory
+			allocation and protection. We present a novel device,
+			the SpecTLB, that exploits the predictable behavior of
+			reservation-based physical memory allocators to
+			interpolate address translations. 
+			</p><p>
+			Our device provides speculative translations for many
+			TLB misses on small pages without referencing the page
+			table. While these interpolations must be confirmed,
+			doing so can be done in parallel with speculative
+			execution. This effectively hides the execution latency
+			of these TLB misses. In simulation, the SpecTLB is able
+			to overlap an average of 57% of page table walks with
+			successful speculative execution over a wide variety of
+			applications. We also show that the SpecTLB outperforms
+			a state-of-the-art TLB prefetching scheme for virtually
+			all tested applications with significant TLB miss
+			rates. Moreover, we show that the SpecTLB is efficient
+			since mispredictions are extremely rare, occurring in
+			less than 1% of TLB misses. In essense, the SpecTLB
+			effectively enables the use of small pages to achieve
+			fine-grained allocation and protection, while avoiding
+			the associated latency penalties of small pages.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/HPCA.2011.5749717">
+			Shared Last-Level TLBs for Chip Multiprocessors</a>
+		      <span class="badge badge-pill badge-primary">HPCA '11</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://daniellustig.net/">
+			Daniel Lustig</a>,
+		      <a href="http://www.princeton.edu/~mrm/">
+			Margaret Martonosi</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/HPCA.2011.5749717">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/abhishek-hpca11.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-11-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-11-abs" class="collapse">
+		      <info>
+			<p></p>
+			Translation Lookaside Buffers (TLBs) are critical to
+			processor performance. Much past research has addressed
+			uniprocessor TLBs, lowering access times and miss
+			rates. However, as chip multiprocessors (CMPs) become
+			ubiquitous, TLB design must be re-evaluated. This paper
+			is the first to propose and evaluate shared last-level
+			(SLL) TLBs as an alternative to the commercial norm of
+			private, per-core L2 TLBs. SLL TLBs eliminate 7-79% of
+			system-wide misses for parallel workloads. This is an
+			average of 27% better than conventional private,
+			per-core L2 TLBs, translating to notable runtime
+			gains. SLL TLBs also provide benefits comparable to
+			recently-proposed Inter-Core Cooperative (ICC) TLB
+			prefetchers, but with considerably simpler
+			hardware. Furthermore, unlike these prefetchers, SLL
+			TLBs can aid sequential applications, eliminating 35-95%
+			of the TLB misses for various multiprogrammed
+			combinations of sequential applications. This
+			corresponds to a 21% average increase in TLB miss
+			eliminations compared to private, per-core L2
+			TLBs. Because of their benefits for parallel and
+			sequential applications, and their readily-implementable
+			hardware, SLL TLBs hold great promise for CMPs.
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	    
+	    <b>2010</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/1815961.1815970">
+			Translation Caching: Skip, Don't Walk (the Page Table)</a>
+		      <span class="badge badge-pill badge-primary">ISCA '10</span>
+		    </h4>
+		    <p class="author">
+		      Thomas W. Barr,
+		      Alan L. Cox,
+		      Scott Rixner
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/1815961.1815970">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://www.cs.rice.edu/CS/Architecture/docs/barr-isca10.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-10-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-10-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			This paper explores the design space of MMU caches that
+			accelerate virtual-to-physical address translation in
+			processor architectures, such as x86-64, that use a
+			radix tree page table. In particular, these caches
+			accelerate the page table walk that occurs after a miss
+			in the Translation Lookaside Buffer. This paper shows
+			that the most effective MMU caches are translation
+			caches, which store partial translations and allow the
+			page walk hardware to skip one or more levels of the
+			page table.
+			</p><p>
+			In recent years, both AMD and Intel processors have
+			implemented MMU caches. However, their implementations
+			are quite different and represent distinct points in the
+			design space. This paper introduces three new MMU cache
+			structures that round out the design space and directly
+			compares the effectiveness of all five
+			organizations. This comparison shows that two of the
+			newly introduced structures, both of which are
+			translation cache variants, are better than existing
+			structures in many situations.
+			</p><p>
+			Finally, this paper contributes to the age-old discourse
+			concerning the relative effectiveness of different page
+			table organizations. Generally speaking, earlier studies
+			concluded that organizations based on hashing, such as
+			the inverted page table, outperformed organizations
+			based upon radix trees for supporting large virtual
+			address spaces. However, these studies did not take into
+			account the possibility of caching page table entries
+			from the higher levels of the radix tree. This paper
+			shows that any of the five MMU cache structures will
+			reduce radix tree page table DRAM accesses far below an
+			inverted page table.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/1735971.1736060">
+			Inter-core cooperative TLB for chip multiprocessors</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '10</span>
+		    </h4>
+		    <p class="author">
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://www.princeton.edu/~mrm/">
+			Margaret Martonosi</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/1735971.1736060">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/abhishek-asplos10.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-10-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-10-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Translation Lookaside Buffers (TLBs) are commonly
+			employed in modern processor designs and have
+			considerable impact on overall system performance. A
+			number of past works have studied TLB designs to lower
+			access times and miss rates, specifically for
+			uniprocessors. With the growing dominance of chip
+			multiprocessors (CMPs), it is necessary to examine TLB
+			performance in the context of parallel workloads.
+			</p><p>
+			This work is the first to present TLB prefetchers that
+			exploit commonality in TLB miss patterns across cores in
+			CMPs. We propose and evaluate two Inter-Core Cooperative
+			(ICC) TLB prefetching mechanisms, assessing their
+			effectiveness at eliminating TLB misses both
+			individually and together. Our results show these
+			approaches require at most modest hardware and can
+			collectively eliminate 19% to 90% of data TLB (D-TLB)
+			misses across the surveyed parallel workloads.
+			</p><p>
+			We also compare performance improvements across a range
+			of hardware and software implementation
+			possibilities. We find that while a fully-hardware
+			implementation results in average performance
+			improvements of 8-46% for a range of TLB sizes, a
+			hardware/software approach yields improvements of
+			4-32%. Overall, our work shows that TLB prefetchers
+			exploiting inter-core correlations can effectively
+			eliminate TLB misses.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/1736020.1736057">
+			Specifying and Dynamically Verifying Address Translation-Aware Memory Consistency</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '10</span>
+		    </h4>
+		    <p class="author">
+		      Bogdan F. Romanescu,
+		      Alvin R. Lebeck,
+		      Daniel J. Sorin
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/1736020.1736057">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="https://users.cs.duke.edu/~alvy/papers/asplos10_consistency.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-10-2-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-10-2-abs" class="collapse">
+		      <info>
+			<p></p>
+			Computer systems with virtual memory are susceptible to
+			design bugs and runtime faults in their address
+			translation (AT) systems. Detecting bugs and faults
+			requires a clear specification of correct behavior. To
+			address this need, we develop a framework for AT-aware
+			memory consistency models. We expand and divide memory
+			consistency into the physical address memory consistency
+			(PAMC) model that defines the behavior of operations on
+			physical addresses and the virtual address memory
+			consistency (VAMC) model that defines the behavior of
+			operations on virtual addresses. As part of this
+			expansion, we show what AT features are required to
+			bridge the gap between PAMC and VAMC. Based on our
+			AT-aware memory consistency specifications, we design
+			efficient dynamic verification hardware that can detect
+			violations of VAMC and thus detect the effects of design
+			bugs and runtime faults, including most AT related bugs
+			in published errata.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/HPCA.2010.5416643">
+			UNified Instruction/Translation/Data (UNITD) Coherence: One Protocol to Rule Them All</a>
+		      <span class="badge badge-pill badge-primary">HPCA '10</span>
+		    </h4>
+		    <p class="author">
+		      Bogdan F. Romanescu,
+		      Alvin R. Lebeck,
+		      Daniel J. Sorin,
+		      Anne Bracy
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/HPCA.2010.5416643">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://people.ee.duke.edu/~sorin/papers/hpca10_unitd.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#hpca-10-1-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="hpca-10-1-abs" class="collapse">
+		      <info>
+			<p></p>
+			We propose UNITD, a unified hardware coherence framework
+			that integrates translation coherence into the existing
+			cache coherence protocol. In UNITD coherence protocols,
+			the TLBs participate in the cache coherence protocol
+			just like the instruction and data caches, without
+			requiring any changes to the existing coherence
+			protocol. UNITD eliminates the need for the software TLB
+			shootdown routine, a procedure known to be performance
+			costly and non-scalable. We evaluate snooping and
+			directory UNITD coherence protocols on multicore
+			processors with 2-16 cores, and we demonstrate that
+			UNITD reduces the performance penalty associated with
+			TLB coherence to almost zero.
+		      </info>
+		    </div>
+		  </td>
+	      </tbody>
+	    </table>
+
+	    <b>2009</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/PACT.2009.26">
+			Characterizing the TLB Behavior of Emerging Parallel
+			Workloads on Chip Multiprocessors</a>
+		      <span class="badge badge-pill badge-primary">PACT '09</span>
+		    </h4>
+		    <p class="author">
+		      <a href="http://www.cs.yale.edu/homes/abhishek/">
+			Abhishek Bhattacharjee</a>,
+		      <a href="http://www.princeton.edu/~mrm/">
+			Margaret Martonosi</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/PACT.2009.26">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cs.yale.edu/homes/abhishek/abhishek-pact09.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#pact-09-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="pact-09-abs" class="collapse">
+		      <info>
+			<p></p>
+			Translation Lookaside Buffers (TLBs) are a staple in
+			modern computer systems and have a significant impact on
+			overall system performance. Numerous prior studies have
+			addressed TLB designs to lower access times and miss
+			rates; these, however, have been targeted towards
+			uniprocessor architectures. As the computer industry
+			embraces chip multiprocessor (CMP) architectures, it is
+			important to study the TLB behavior of emerging parallel
+			workloads. This work presents the first full-system
+			characterization of the TLB behavior of emerging
+			parallel applications on real-system CMPs. Using the
+			PARSEC benchmarks, representative of emerging RMS
+			workloads, we show that TLB misses can hinder system
+			performance significantly. We also evaluate TLB miss
+			stream patterns and show that multiple threads of a
+			parallel execution experience a large number of
+			redundant and predictable misses. For our evaluated
+			benchmarks, 30% to 95% of the total misses fall under
+			this category. Our results point to the need for novel
+			TLB designs encouraging inter-core cooperation, either
+			through hierarchically shared TLBs or through inter-core
+			TLB prediction mechanisms.
+		      </info>
+		    </div>
+		  </td>
+	      </tbody>
+	    </table>
+
+	    <b>2008</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/1375634.1375641">
+			Supporting Superpage Allocation Without Additional Hardware Support</a>
+		      <span class="badge badge-pill badge-primary">ISMM '08</span>
+		    </h4>
+		    <p class="author">
+		      Mel Gorman,
+		      Patrick Healy
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/1375634.1375641">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#ismm-08-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="ismm-08-abs" class="collapse">
+		      <info>
+			<p></p>
+			<p>
+			Today, many modern processors support more than one page
+			size. The larger pages, called superpages, have been
+			identified as one means of reducing the time spent
+			servicing translation lookaside buffer (TLB) misses in
+			the early 1990s by increasing TLB reach. Widespread
+			usage of superpages has been limited by the requirement
+			that superpages consist of physically contiguous and
+			naturally-aligned small pages. This makes external
+			fragmentation a serious problem for an operating system,
+			one that is almost non-existent when processes use only
+			one page size. Hardware solutions to mitigate this
+			limitation such as sub-blocking, shadow page-tables and
+			a variety of hybrid solutions have not seen wide-spread
+			adoption. This has curtailed automatic superpage support
+			as it is known that superpage availability will decrease
+			during the system's lifetime as external fragmentation
+			grows.
+			</p><p>
+			This paper presents a placement policy for an operating
+			system's physical page allocator to mitigate external
+			fragmentation problems by grouping pages based on the
+			system's ability to relocate the data. Secondly, the
+			necessary changes to the page reclamation algorithm for
+			it to be contiguity-aware are described while minimising
+			impact to the reclamation algorithms' normal
+			decisions. The performance impact on different machine
+			types is illustrated and it is shown that the superpage
+			allocation success rate is improved. These mechanisms
+			are complementary to any of the hardware solutions
+			proposed in the past.
+			</p>
+		      </info>
+		    </div>
+		  </td>
+	      </tbody>
+	    </table>
+
+	    <b>2004</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/TC.2004.21">
+			Concurrent Support of Multiple Page Sizes on a Skewed Associative TLB</a>
+		      <span class="badge badge-pill badge-primary">TC '04</span>
+		    </h4>
+		    <p class="author">
+		      <a href="https://team.inria.fr/pacap/members/andre-seznec/">
+			Andre Seznec</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/TC.2004.21">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.irisa.fr/caps/people/seznec/SKEWEDTLBperso.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#tc-04-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="tc-04-abs" class="collapse">
+		      <info>
+			<p></p>
+			Some architecture definitions (e.g., Alpha) allow the
+			use of multiple virtual page sizes even for a single
+			process. Unfortunately, on current set-associative TLBs
+			(translation lookaside buffers), pages with different
+			sizes cannot coexist together. Thus, processors
+			supporting multiple page sizes implement fully
+			associative TLBs. In this research note, we show how the
+			skewed-associative TLB can accommodate the concurrent
+			use of multiple page sizes within a single process. This
+			allows us to envision either medium size L1 TLBs or very
+			large L2 TLBs supporting multiple page sizes.
+		      </info>
+		    </div>
+		  </td>
+	      </tbody>
+	    </table>
+
+	    <b>2003</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/773365.773374">
+			A Transparent Linux Super Page Kernel for Alpha, Sparc 64and IA32</a>
+		      <span class="badge badge-pill badge-primary">CA News '03</span>
+		    </h4>
+		    <p class="author">
+		      Naohiko Shimizu,
+		      Ken Takatori
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/773365.773374">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#canews-03-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="canews-03-abs" class="collapse">
+		      <info>
+			<p></p>
+			Modern processors have various features for latency
+			tolerance such as Hit-under-miss, Out-of-order
+			execution, or Multi-threading. However, many processors
+			must make a precise trap for a TLB miss, because they
+			maintain the TLB with software and cannot distinguish
+			the TLB scarcity from the page fault. It is very
+			important for the application and/or the operating
+			system to avoid the TLB misses as much as possible. Many
+			processors have some super page features that extend the
+			coverage of the TLB significantly, but few operating
+			systems support it. In this paper, we present our
+			implementation of Super Page Kernel for the Linux
+			operating system along with its performance. We
+			implemented Super Page for Alpha, Sparc64 and IA32. With
+			super page kernel, a matrix transpose program runs at
+			least 4 times faster on Alpha, at least 2 times faster
+			on Sparc64, and generates interesting results on IA32
+			compared to the normal Linux kernel. In addition, we got
+			SPEC CPU numbers that were about 10% higher than normal
+			kernel on Alpha.
+		      </info>
+		    </div>
+		  </td>
+	      </tbody>
+	    </table>
+
+	    <b>2002</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://www.usenix.org/node/150613">
+			Practical, Transparent Operating System Support for Superpages</a>
+		      <span class="badge badge-pill badge-primary">OSDI '02</span>
+		    </h4>
+		    <p class="author">
+		      Juan Navarro,
+		      Sitararn Iyer,
+		      Peter Druschel,
+		      Alan Cox
+		      <br>
+		    </p>
+		    <a href="https://www.usenix.org/node/150613">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <a href="http://www.cs.rice.edu/~druschel/publications/superpages.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#osdi-02-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="osdi-02-abs" class="collapse">
+		      <info>
+			<p></p>
+			Most general-purpose processors provide support for
+			memory pages of large sizes, called
+			<b>superpages</b>. Superpages enable each entry in the
+			translation lookaside buffer (TLB) to map a large
+			physical memory region into a virtual address
+			space. This dramatically increases TLB coverage, reduces
+			TLB misses, and promises performance improvements for
+			many applications. However, supporting superpages poses
+			several challenges to the operating system, in terms of
+			superpage allocation and promotion tradeoffs,
+			fragmentation control, etc. We analyze these issues, and
+			propose the design of an effective superpage management
+			system. We implement it in FreeBSD on the Alpha CPU, and
+			evaluate it on real workloads and benchmarks. We obtain
+			substantial performance benefits, often exceeding 30%;
+			these benefits are sustained even under stressful
+			workload scenarios.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/511334.511351">
+			Characterizing the d-TLB Behavior of SPEC CPU2000 Benchmarks</a>
+		      <span class="badge badge-pill badge-primary">SIGMETRICS '02</span>
+		    </h4>
+		    <p class="author">
+		      Gokul B. Kandiraju,
+		      Anand Sivasubramaniam
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/511334.511351">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://www.cse.psu.edu/~axs53/csl/papers/metrics02b.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#sigmetrics-02-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="sigmetrics-02-abs" class="collapse">
+		      <info>
+			<p></p>
+			Despite the numerous optimization and evaluation studies
+			that have been conducted with TLBs over the years, there
+			is still a deficiency in an indepth understanding of TLB
+			characteristics from an application angle. This paper
+			presents a detailed characterization study of the TLB
+			behavior of the SPEC CPU2000 benchmark suite. The
+			contributions of this work are in identifying important
+			application characteristics for TLB studies, quantifying
+			the SPEC2000 application behavior for these
+			characteristics, as well as making pronouncements and
+			suggestions for future research based on these
+			results.Around one-fourth of the SPEC2000 applications
+			(ammp, apsi, galgel, lucas, mcf, twolf and vpr) have
+			significant TLB missrates. Both capacity and
+			associativity are influencing factors on miss-rates,
+			though they do not necessarily go
+			hand-in-hand. Multi-level TLBs are definitely useful for 
+			these applications in cutting down access times without
+			significant miss rate degradation. Superpaging to
+			combine TLB entries may not be rewarding for many of
+			these applications. Software management of TLBs in terms
+			of determining what entries to prefetch, what entries to
+			replace, and what entries to pin has a lot of potential
+			to cut down miss rates considerably. Specifically, the
+			potential benefits of prefetching TLB entries is
+			examined, and Distance Prefetching is shown to give good
+			prediction accuracy for these applications.
+		      </info>
+		    </div>
+		  </td>
+	      </tbody>
+	    </table>
+
+	    <b>2000-1991</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/335231.335249">
+			Boosting Superpage Utilization with the Shadow Memory and the Partial-Subblock TLB</a>
+		      <span class="badge badge-pill badge-primary">ICS '00</span>
+		    </h4>
+		    <p class="author">
+		      Cheol Ho Park,
+		      JaeWoong Chung,
+		      Byeong Hag Seong,
+		      YangWoo Roh,
+		      Daeyeon Park
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/335231.335249">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#ics-00-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="ics-00-abs" class="collapse">
+		      <info>
+			<p></p>
+			While superpage is an efficient solution to increase TLB
+			reach, its limited flexibility for address mapping is
+			still a hard issue. Our proposed mechanism has been
+			developed for taking advantage of two previous
+			approaches which resolve the issue partially: the
+			partial-subblock TLB and the shadow memory. Through
+			integration of them, our mechanism enjoys various
+			benefits inherited from the both sides. By adopting
+			Memory Controller TLB (MTLB) from the shadow memory, it
+			allows superpages to be composed of arbitrary physical
+			pages. The entry structure of the partial-subblock TLB
+			applied for the processor TLB enables all invalid
+			address mappings to be identified inside CPU, which
+			reduces the overhead of handling invalid mappings. In
+			addition, cache flushing which is required when a
+			mapping of shadow address to physical address is
+			destroyed (e.g. due to paging) can be replaced just by
+			resetting the corresponding valid bit in the processor
+			TLB. At last, the per-base-page reference bits in the
+			processor TLB make the page replacement policy of the
+			operating system more efficient. In simulation with six
+			benchmarks, our mechanism generates only 27% of TLB
+			misses compared to the single-page-size TLB. With a
+			detailed analysis, it is shown to be evident that the
+			efficiency of our mechanism is magnified in real
+			computing environment where multitasking and
+			applications of large sizes are ordinary cases.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/279361.279388">
+			Increasing TLB Reach Using Superpages Backed by Shadow Memory</a>
+		      <span class="badge badge-pill badge-primary">ISCA '98</span>
+		    </h4>
+		    <p class="author">
+		      Mark Swanson,
+		      Leigh Stoller,
+		      John Carter
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/279361.279388">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://mprc.pku.edu.cn/~liuxianhua/chn/corpus/Notes/articles/isca/1998/p204-swanson/p204-swanson.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-98-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-98-abs" class="collapse">
+		      <info>
+			<p></p>
+			The amount of memory that can be accessed without
+			causing a TLB fault, the reach of a TLB, is failing to
+			keep pace with the increasingly large working sets of
+			applications. We propose to extend TLB reach via a novel
+			Memory Controller TLB (MTLB) that lets us aggressively
+			create superpages from non-contiguous, unaligned regions
+			of physical memory. This flexibility increases the OS's
+			ability to use superpages on arbitrary application
+			data. The MTLB supports shadow pages, regions of
+			physical address space for which the MTLB remaps
+			accesses to "real" physical pages. The MTLB preserves
+			per-base-page referenced and dirty bits, which enables
+			the OS to swap shadow-backed superpages a page at a
+			time, unlike conventional superpages. Simulation of five
+			applications, including two SPECint95 benchmarks,
+			demonstrated that a modest-sized MTLB improves
+			performance of applications with moderate-to-high TLB
+			miss rates by 5-20%. Simulation also showed that this
+			mechanism can more than double the effective reach of a
+			processor TLB with no modification to the processor
+			MMU.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://www.usenix.org/conference/1998-usenix-annual-technical-conference/general-purpose-operating-system-support-multiple">
+			General Purpose Operating System Support for Multiple Page Sizes</a>
+		      <span class="badge badge-pill badge-primary">ATC '98</span>
+		    </h4>
+		    <p class="author">
+		      Narayanan Ganapathy,
+		      Curt Schimmel
+		      <br>
+		    </p>
+		    <a href="https://www.usenix.org/conference/1998-usenix-annual-technical-conference/general-purpose-operating-system-support-multiple">
+		      <button type="button" class="badge btn-warning">www</button></a>
+		    <a href="https://www.usenix.org/publications/library/proceedings/usenix98/full_papers/ganapathy/ganapathy.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#atc-98-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="atc-98-abs" class="collapse">
+		      <info>
+			<p></p>
+			Many commercial microprocessor architectures support
+			translation lookaside buffer (TLB) entries with multiple
+			page sizes. This support can be used to substantially
+			reduce the overhead introduced by TLB misses incurred
+			when the processor runs an application with a large
+			working set. Applications are currently not able to take
+			advantage of this hardware feature because most
+			commercial operating systems support only one page
+			size. In this paper we present a design that provides
+			general purpose operating system support that allows
+			applications to use multiple page sizes. The paper
+			describes why providing this support is not as simple as
+			it first seems. If not designed carefully, adding this
+			support will require significant modifications and add a
+			lot of overhead to the operating system. The paper shows
+			how our approach simplifies the design without
+			sacrificing functionality and performance. In addition,
+			applications need not be modified to make use of this
+			feature. The design has been implemented on IRIX 6.4
+			operating system running on the SGI Origin platform. We
+			include some performance results at the end to show how
+			our design allows applications to take advantage of
+			large pages to gain performance improvements.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/195470.195531">
+			Surpassing the TLB Performance of Superpages with Less Operating System Support</a>
+		      <span class="badge badge-pill badge-primary">ASPLOS '94</span>
+		    </h4>
+		    <p class="author">
+		      Madhusudhan Talluri,
+		      Mark D. Hill
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/195470.195531">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://pages.cs.wisc.edu/~markhill/papers/asplos6_superpages.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#asplos-94-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="asplos-94-abs" class="collapse">
+		      <info>
+			<p></p>
+			Many commercial microprocessor architectures have added
+			translation lookaside buffer (TLB) support for
+			superpages. Superpages differ from segments because
+			their size must be a power of two multiple of the base
+			page size and they must be aligned in both virtual and
+			physical address spaces. Very large superpages (e.g.,
+			1MB) are clearly useful for mapping special structures,
+			such as kernel data or frame buffers. This paper
+			considers the architectural and operating system support
+			required to exploit medium-sized superpages (e.g., 64KB,
+			i.e., sixteen times a 4KB base page size). First, we
+			show that superpages improve TLB performance only after
+			invasive operating system modifications that introduce
+			considerable overhead.We then propose two subblock TLB
+			designs as alternate ways to improve TLB
+			performance. Analogous to a subblock cache, a
+			complete-subblock TLB associates a tag with a
+			superpage-sized region but has valid bits, physical page
+			number, attributes, etc., for each possible base page
+			mapping. A partial-subblock TLB entry is much smaller
+			than a complete-subblock TLB entry, because it shares
+			physical page number and attribute fields across base
+			page mappings. A drawback of a partial-subblock TLB is
+			that base page mappings can share a TLB entry only if
+			they map to consecutive physical pages and have the same
+			attributes. We propose a physical memory allocation
+			algorithm, page reservation, that makes this sharing
+			more likely. When page reservation is used, experimental
+			results show partial-subblock TLBs perform better than
+			superpage TLBs, while requiring simpler operating system
+			changes. If operating system changes are inappropriate,
+			however, complete-subblock TLBs perform best.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/139669.139708">
+			A Simulation-Based Study of TLB Performance</a>
+		      <span class="badge badge-pill badge-primary">ISCA '92</span>
+		    </h4>
+		    <p class="author">
+		      J. Bradley Chen,
+		      Anita Borg,
+		      Norman P. Jouppi
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/139669.139708">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://mprc.pku.edu.cn/~liuxianhua/chn/corpus/Notes/articles/isca/1992/p114-chen/p114-chen.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#isca-92-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="isca-92-abs" class="collapse">
+		      <info>
+			<p></p>
+			This paper presents the results of a simulation-based
+			study of various translation lookaside buffer (TLB)
+			architectures, in the context of a modern VLSI RISC
+			processor. The simulators used address traces, generated
+			by instrumented versions of the SPEC marks and several
+			other programs running on a DECstation 5000. The
+			performance of two-level TLBs and fully-associative TLBs
+			were investigated. The amount of memory mapped was found
+			to be the dominant factor in TLB performance. Small
+			first-level FIFO instruction TLBs can be effective in
+			two level TLB configurations. For some applications, the
+			cyles-per-instruction (CPI) loss due to TLB misses can
+			be reduced from as much as 5CPI to negligible levels
+			with typical TLB parameters through the use of
+			variable-sized pages.
+		      </info>
+		    </div>
+		  </td>
+	      </tbody>
+	    </table>
+
+	    <b>1980-1971</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/957195.808052">
+		        Dynamic Storage Partitioning</a>
+		      <span class="badge badge-pill badge-primary">SOSP '73</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://denninginstitute.com/denning/">
+			Peter J. Denning</a>,
+		      Jeffrey R. Spirn
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/957195.808052">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://denninginstitute.com/pjd/PUBS/dynamic-storage-partition-1973.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#sosp-73-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="sosp-73-abs" class="collapse">
+		      <info>
+			<p></p>
+			A model of paged multiprogramming computer systems using
+			variable storage partitioning is considered. A variable
+			storage partitioning policy is one which allocates
+			storage among the active tasks according to a sequence
+			of fixed partitions of main storage. The basic result
+			obtained is, mean processing efficiency is increased and
+			mean fault-rate decreased under a variable partition,
+			provided that the curves of efficiency and fault-rate as
+			a function of allocated space are concave up.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/361268.361281">
+		        Properties of the Working Set Model</a>
+		      <span class="badge badge-pill badge-primary">CACM '72</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://denninginstitute.com/denning/">
+			Peter J. Denning</a>,
+		      Stuart C. Schwartz
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/361268.361281">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://denninginstitute.com/pjd/PUBS/WSProp_1972.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#cacm-72-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="cacm-72-abs" class="collapse">
+		      <info>
+			<p></p>
+			A program's working set W(t, T) at time t is the set of
+			distinct pages among the T most recently referenced
+			pages. Relations between the average working-set size,
+			the missing-page rate, and the interreference-interval
+			distribution may be derived both from time-average
+			definitions and from ensemble-average (statistical)
+			definitions. An efficient algorithm for estimating these
+			quantities is given. The relation to LRU (lease recently
+			used) paging is characterized. The independent-reference
+			model, in which page references are statistically
+			independent, is used to assess the effects of interpage
+			dependencies on working-set size observations. Under
+			general assumptions, working-set size is shown to be
+			normally distributed.
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+
+	    <b>Before 1970</b>
+	    <table class="table table-hover">
+              <tbody>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/356571.356573">
+		        Virtual Memory</a>
+		      <span class="badge badge-pill badge-primary">CSUR '70</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://denninginstitute.com/denning/">
+			Peter J. Denning</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/356571.356573">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://denninginstitute.com/pjd/PUBS/VirtMem_1970.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#csur-70-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="csur-70-abs" class="collapse">
+		      <info>
+			<p></p>
+			The need for automatic storage allocation arises from
+			desires for program modularity, machine independence,
+			and resource sharing. Virtual memory is an elegant way
+			of achieving these objectives. In a virtual memory, the
+			addresses a program may use to identify information are
+			distinguished from the addresses the memory system uses
+			to identify physical storage sites, and
+			program-generated addresses are translated automatically
+			to the	corresponding machine addresses. Two principal
+			methods for implementing virtual memory,
+			segmentation and paging, are compared and
+			contrasted. Many contemporary implementations have
+			experienced one or more of these problems: poor
+			utilization of storage, thrashing, and high costs
+			associated with loading information into memory. These
+			and subsidiary problems are studied from a theoretic
+			view, and are shown to be controllable by a proper
+			combination of hardware and memory management policies. 
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/1476589.1476705">
+		        Thrashing: Its Causes and Prevention</a>
+		      <span class="badge badge-pill badge-primary">AFIPS '68</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://denninginstitute.com/denning/">
+			Peter J. Denning</a>
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/1476589.1476705">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://denninginstitute.com/pjd/PUBS/thrashing-1968.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#afips-68-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="afips-68-abs" class="collapse">
+		      <info>
+			<p></p>
+			A particularly troublesome phenomenon, thrashing, may
+			seriously interfere with the performance of paged memory
+			systems, reducing computing giants (Multics, IBM System
+			360, and others not necessarily excepted) to computing
+			dwarfs. The term thrashing denotes excessive overhead
+			and severe performance degradation or collapse caused by
+			too much paging. Thrashing inevitably turns a shortage
+			of memory space into a surplus of processor time.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/363095.363139">
+			Virtual memory, processes, and sharing in MULTICS</a>
+		      <span class="badge badge-pill badge-primary">CACM '68</span>
+                    </h4>
+		    <p class="author">
+		      Robert C. Daley,
+		      Jack B. Dennis
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1145/363095.363139">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://research.cs.wisc.edu/areas/os/Qual/papers/multics-memory.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#cacm-68-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="cacm-68-abs" class="collapse">
+		      <info>
+			<p></p>
+			Some basic concepts involved in the design of the MULTICS
+			operating system are introduced. MULTICS concepts of
+			processes, address space, and virtual memory are defined
+			and the use of paging and segmentation is explained. The
+			means by which users may share procedures and data is
+			discussed and the mechanism by which symbolic references
+			are dynamically transformed into virtual machine
+			addresses is described in detail.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1145/800001.811670">
+		        The Working Set Model for Program Behavior</a>
+		      <span class="badge badge-pill badge-primary">SOSP '67</span>
+                    </h4>
+		    <p class="author">
+		      <a href="http://denninginstitute.com/denning/">
+			Peter J. Denning</a>
+		      <br>
+		      Note: Also in CACM '68.
+		    </p>
+		    <a href="https://doi.org/10.1145/800001.811670">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <a href="http://denninginstitute.com/pjd/PUBS/WSModel_1968.pdf">
+		      <button type="button" class="badge btn-danger">PDF</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#sosp-67-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="sosp-67-abs" class="collapse">
+		      <info>
+			<p></p>
+			Probably the most basic reason behind the absence of a
+			general treatment of resource allocation in modern
+			computer systems is an adequate model for program
+			behavior. In this paper a new model is developed, the
+			"working set model", which enables us to decide which
+			information is in use by a running program and which is
+			not. Such knowledge is vital for dynamic management of
+			paged memories. The working set of pages associated with
+			a process, defined to be the collection of its most
+			recently used pages, is a useful allocation concept. A
+			proposal for an easy-to-implement allocation policy is
+			set forth; this policy is unique, inasmuch as it blends
+			into one decision function the heretofore independent
+			activities of process-scheduling and memory-management.
+		      </info>
+		    </div>
+		  </td>
+		<tr><td>
+		    <h4 class="list-group-item-heading">
+		      <a href="https://doi.org/10.1109/TEC.1962.5219356">
+			One-Level Storage System</a>
+		      <span class="badge badge-pill badge-primary">IRE-TEC '62</span>
+                    </h4>
+		    <p class="author">
+		      Tom Kilburn,
+		      Dai B.G. Edwards,
+		      Mike J. Lanigan,
+		      Frank H. Sumner
+		      <br>
+		    </p>
+		    <a href="https://doi.org/10.1109/TEC.1962.5219356">
+		      <button type="button" class="badge btn-warning">doi</button></a>
+		    <button type="button" class="badge btn-primary"
+			    data-target="#tec-62-abs" data-toggle="collapse">
+		      Abstract</button>
+		    <div id="tec-62-abs" class="collapse">
+		      <info>
+			<p></p>
+			After a brief survey of the basic Atlas machine, the
+			paper describes an automatic system which in principle
+			can be applied to any combination of two storage systems
+			so that the combination can be regarded by the machine
+			user as a single level. The actual system described
+			relates to a fast core store-drum combination. The
+			effect of the system on instruction times is
+			illustrated, and the tape transfer system is also
+			introduced since it fits basically in through the same
+			hardware. The scheme incorporates a "learning"
+			program, a technique which can be of greater importance
+			in future computers.
+		      </info>
+		    </div>
+		  </td>
+   	      </tbody>
+	    </table>
+	  </div>
+	</section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">
+	  Last updated: January 2019
+	</span>
+      </div>
+    </footer>
+
+    <!-- ================================================== -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-28050556-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>
