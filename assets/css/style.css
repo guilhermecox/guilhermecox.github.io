@@ -1,0 +1,30 @@
+.author {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+a {
+    -moz-transition: color .2s ease-in-out;
+    -webkit-transition: color .2s ease-in-out;
+    -ms-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+    color: #000000;
+}
+
+a:hover {
+    color: #0020C2 !important;
+}
+
+a img {
+    border: 0;
+}
+
+b, strong {
+    font-weight: 800;
+    color: #3e3e3e;
+}
